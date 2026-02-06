@@ -1,0 +1,68 @@
+<?php
+
+namespace Narsil\Cms\Form\Implementations\Requests;
+
+#region USE
+
+use Illuminate\Support\Facades\Gate;
+use Narsil\Cms\Form\Contracts\FormRequests\FieldsetFormRequest as Contract;
+use Narsil\Cms\Form\Enums\Policies\PermissionEnum;
+use Narsil\Cms\Form\Implementations\AbstractFormRequest;
+use Narsil\Cms\Form\Models\Fieldset;
+use Narsil\Cms\Form\Validation\FormRule;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+class FieldsetFormRequest extends AbstractFormRequest implements Contract
+{
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public function authorize(): bool
+    {
+        if ($this->fieldset)
+        {
+            return Gate::allows(PermissionEnum::UPDATE, $this->fieldset);
+        }
+
+        return Gate::allows(PermissionEnum::CREATE, Fieldset::class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rules(): array
+    {
+        return [
+            Fieldset::HANDLE => [
+                FormRule::ALPHA_DASH,
+                FormRule::LOWERCASE,
+                FormRule::doesntStartWith('-'),
+                FormRule::doesntEndWith('-'),
+                FormRule::REQUIRED,
+                FormRule::unique(
+                    Fieldset::class,
+                    Fieldset::HANDLE,
+                )->ignore($this->fieldset?->{Fieldset::ID}),
+
+            ],
+            Fieldset::LABEL => [
+                FormRule::REQUIRED,
+            ],
+
+            Fieldset::RELATION_ELEMENTS => [
+                FormRule::ARRAY,
+                FormRule::NULLABLE,
+                FormRule::SOMETIMES,
+            ],
+        ];
+    }
+
+    #endregion
+}
