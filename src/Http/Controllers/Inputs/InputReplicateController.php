@@ -6,12 +6,12 @@ namespace Narsil\Cms\Form\Http\Controllers\Inputs;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Cms\Form\Enums\ModelEventEnum;
-use Narsil\Cms\Form\Enums\Policies\PermissionEnum;
-use Narsil\Cms\Form\Http\Controllers\RedirectController;
+use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Form\Services\Models\InputService;
-use Narsil\Cms\Form\Services\ModelService;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

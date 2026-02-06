@@ -1,17 +1,17 @@
 <?php
 
-namespace Narsil\Cms\Form\Http\Controllers\Forms;
+namespace Narsil\Cms\Form\Http\Controllers;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Form\Enums\Policies\PermissionEnum;
-use Narsil\Cms\Form\Http\Collections\DataTableCollection;
-use Narsil\Cms\Form\Http\Controllers\RenderController;
+use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Form\Models\Form;
-use Narsil\Cms\Form\Services\ModelService;
+use Narsil\Cms\Http\Collections\DataTableCollection;
+use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Cms\Services\ModelService;
 
 #endregion
 

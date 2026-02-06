@@ -1,14 +1,14 @@
 <?php
 
-namespace Narsil\Cms\Form\Http\Controllers\Forms;
+namespace Narsil\Cms\Form\Http\Controllers;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
-use Narsil\Cms\Form\Http\Controllers\RedirectController;
-use Narsil\Cms\Form\Http\Requests\SearchRequest;
 use Narsil\Cms\Form\Models\Form;
-use Narsil\Cms\Form\Support\SelectOption;
+use Narsil\Cms\Http\Controllers\RedirectController;
+use Narsil\Cms\Http\Requests\SearchRequest;
+use Narsil\Cms\Support\SelectOption;
 
 #endregion
 

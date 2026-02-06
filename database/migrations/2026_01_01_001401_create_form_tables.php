@@ -5,7 +5,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Cms\Form\Enums\Database\OperatorEnum;
+use Narsil\Cms\Enums\Database\OperatorEnum;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\FieldsetElement;
 use Narsil\Cms\Form\Models\FieldsetElementCondition;
@@ -18,8 +18,8 @@ use Narsil\Cms\Form\Models\FormWebhook;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Form\Models\InputOption;
 use Narsil\Cms\Form\Models\InputValidationRule;
-use Narsil\Cms\Form\Models\User;
-use Narsil\Cms\Form\Models\ValidationRule;
+use Narsil\Cms\Models\User;
+use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 

@@ -3,15 +3,8 @@
 #region USE
 
 use Illuminate\Support\Facades\Route;
-use Narsil\Cms\Form\Http\Controllers\Forms\FormSubmitController;
-use Narsil\Cms\Form\Http\Controllers\Sitemaps\SitemapController;
-use Narsil\Cms\Form\Http\Controllers\Sitemaps\SitemapIndexController;
+use Narsil\Cms\Form\Http\Controllers\FormSubmitController;
 
 #endregion
-
-Route::redirect('/admin', '/narsil/dashboard');
-
-Route::get('/sitemap_index.xml', SitemapIndexController::class);
-Route::get('/sitemap/{country}.xml', SitemapController::class);
 
 Route::post('/forms/{form}/submit', FormSubmitController::class);

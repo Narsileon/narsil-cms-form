@@ -4,13 +4,13 @@ namespace Narsil\Cms\Form\Implementations\Tables;
 
 #region USE
 
-use Narsil\Cms\Form\Enums\DataTypeEnum;
-use Narsil\Cms\Form\Implementations\AbstractTable;
+use Narsil\Cms\Enums\DataTypeEnum;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\FormStep;
 use Narsil\Cms\Form\Models\FormWebhook;
-use Narsil\Cms\Form\Services\ModelService;
-use Narsil\Cms\Form\Support\TableColumn;
+use Narsil\Cms\Implementations\AbstractTable;
+use Narsil\Cms\Services\ModelService;
+use Narsil\Cms\Support\TableColumn;
 
 #endregion
 

@@ -4,15 +4,15 @@ namespace Narsil\Cms\Form\Implementations\Forms;
 
 #region USE
 
-use Narsil\Cms\Form\Contracts\Fields\SwitchField;
-use Narsil\Cms\Form\Contracts\Fields\TextField;
-use Narsil\Cms\Form\Contracts\Forms\ConditionForm;
+use Narsil\Cms\Contracts\Fields\SwitchField;
+use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Cms\Contracts\Forms\ConditionForm;
 use Narsil\Cms\Form\Contracts\Forms\FormStepElementForm as Contract;
-use Narsil\Cms\Form\Implementations\AbstractForm;
-use Narsil\Cms\Form\Models\Collections\Field;
-use Narsil\Cms\Form\Models\Collections\TemplateTab;
-use Narsil\Cms\Form\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Form\Models\FormStepElement;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 

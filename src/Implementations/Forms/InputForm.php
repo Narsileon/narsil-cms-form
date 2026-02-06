@@ -6,21 +6,21 @@ namespace Narsil\Cms\Form\Implementations\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
-use Narsil\Cms\Form\Contracts\Fields\CheckboxField;
-use Narsil\Cms\Form\Contracts\Fields\SelectField;
-use Narsil\Cms\Form\Contracts\Fields\TextField;
+use Narsil\Cms\Contracts\Fields\CheckboxField;
+use Narsil\Cms\Contracts\Fields\SelectField;
+use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Form\Contracts\Forms\InputForm as Contract;
-use Narsil\Cms\Form\Implementations\AbstractForm;
-use Narsil\Cms\Form\Models\Collections\Block;
-use Narsil\Cms\Form\Models\Collections\Field;
-use Narsil\Cms\Form\Models\Collections\TemplateTab;
-use Narsil\Cms\Form\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Form\Models\ValidationRule;
-use Narsil\Cms\Form\Services\Models\FieldService;
-use Narsil\Cms\Form\Services\ModelService;
-use Narsil\Cms\Form\Services\RouteService;
-use Narsil\Cms\Form\Support\SelectOption;
+use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Models\ValidationRule;
+use Narsil\Cms\Services\Models\FieldService;
+use Narsil\Cms\Services\ModelService;
+use Narsil\Cms\Services\RouteService;
+use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
