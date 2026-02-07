@@ -77,7 +77,7 @@ class ServiceProvider extends NarsilServiceProvider
     {
         $group = trans('narsil-cms::ui.forms');
 
-        Sidebar::add(new MenuItem()
+        Sidebar::add(new MenuItem(Form::TABLE)
             ->group($group)
             ->icon('form')
             ->label(ModelService::getTableLabel(Form::TABLE))
@@ -86,7 +86,7 @@ class ServiceProvider extends NarsilServiceProvider
             ])
             ->route('forms.index'));
 
-        Sidebar::add(new MenuItem()
+        Sidebar::add(new MenuItem(Fieldset::TABLE)
             ->group($group)
             ->icon('fieldset')
             ->label(ModelService::getTableLabel(Fieldset::TABLE))
@@ -95,7 +95,7 @@ class ServiceProvider extends NarsilServiceProvider
             ])
             ->route('fieldsets.index'));
 
-        Sidebar::add(new MenuItem()
+        Sidebar::add(new MenuItem(Input::TABLE)
             ->group($group)
             ->icon('input')
             ->label(ModelService::getTableLabel(Input::TABLE))
