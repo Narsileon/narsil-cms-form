@@ -7,7 +7,7 @@ return [
     | Available Inputs
     |--------------------------------------------------------------------------
     |
-    | Field contracts available as Inputs.
+    | Field contracts available in web.
     |
     */
 

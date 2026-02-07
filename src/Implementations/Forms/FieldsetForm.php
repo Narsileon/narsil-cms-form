@@ -55,12 +55,12 @@ class FieldsetForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Fieldset::TABLE, Fieldset::HANDLE),
                         TemplateTabElement::HANDLE => Fieldset::HANDLE,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -70,7 +70,7 @@ class FieldsetForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Fieldset::TABLE, Fieldset::LABEL),
                         TemplateTabElement::HANDLE => Fieldset::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [
@@ -80,7 +80,7 @@ class FieldsetForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => Fieldset::RELATION_ELEMENTS,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.elements'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.elements'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)

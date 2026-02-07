@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Cms\Form\Contracts\FormRequests;
+namespace Narsil\Cms\Form\Contracts\Requests;
 
 #region USE
 
@@ -14,7 +14,7 @@ use Narsil\Cms\Contracts\FormRequest;
  *
  * @see vendor/narsil/cms-form/config/narsil/bindings/requests.php
  */
-interface FormSubmissionDataFormRequest extends FormRequest
+interface FormFormRequest extends FormRequest
 {
     //
 }

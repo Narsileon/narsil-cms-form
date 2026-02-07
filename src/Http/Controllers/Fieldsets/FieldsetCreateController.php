@@ -7,9 +7,9 @@ namespace Narsil\Cms\Form\Http\Controllers\Fieldsets;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Contracts\Forms\FieldsetForm;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Cms\Form\Contracts\Forms\FieldsetForm;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Services\ModelService;
@@ -62,7 +62,7 @@ class FieldsetCreateController extends RenderController
         $form = app(FieldsetForm::class)
             ->action(route('fieldsets.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil::ui.save'));
+            ->submitLabel(trans('narsil-cms::ui.save'));
 
         return $form;
     }

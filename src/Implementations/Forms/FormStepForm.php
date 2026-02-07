@@ -32,7 +32,7 @@ class FormStepForm extends AbstractForm implements Contract
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => FormStep::HANDLE,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.handle'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -41,7 +41,7 @@ class FormStepForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => FormStep::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.label'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [
@@ -51,7 +51,7 @@ class FormStepForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => FormStep::DESCRIPTION,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.description'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.description'),
                         TemplateTabElement::TRANSLATABLE => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,

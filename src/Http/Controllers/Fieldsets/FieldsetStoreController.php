@@ -7,7 +7,7 @@ namespace Narsil\Cms\Form\Http\Controllers\Fieldsets;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Narsil\Cms\Enums\ModelEventEnum;
-use Narsil\Cms\Form\Contracts\FormRequests\FieldsetFormRequest;
+use Narsil\Cms\Form\Contracts\Requests\FieldsetFormRequest;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Services\FieldsetService;
 use Narsil\Cms\Http\Controllers\RedirectController;

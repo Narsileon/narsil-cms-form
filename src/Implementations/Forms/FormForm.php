@@ -62,11 +62,11 @@ class FormForm extends AbstractForm implements Contract
         return [
             [
                 TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil::ui.definition'),
+                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
                         TemplateTabElement::HANDLE => Form::SLUG,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.slug'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.slug'),
                         TemplateTabElement::REQUIRED => true,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => TextField::class,
@@ -83,7 +83,7 @@ class FormForm extends AbstractForm implements Contract
                                 ->columns([
                                     [
                                         BlockElement::HANDLE => FormWebhook::URL,
-                                        BlockElement::LABEL => trans('narsil::validation.attributes.url'),
+                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.url'),
                                         BlockElement::REQUIRED => true,
                                         BlockElement::RELATION_BASE => [
                                             Field::TYPE => TextField::class,
@@ -95,19 +95,19 @@ class FormForm extends AbstractForm implements Contract
                     ],
                     [
                         TemplateTabElement::HANDLE => Form::RELATION_STEPS,
-                        TemplateTabElement::LABEL => trans('narsil::validation.attributes.steps'),
+                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.steps'),
                         TemplateTabElement::RELATION_BASE => [
-                            Field::PLACEHOLDER => trans('narsil::ui.add_tab'),
+                            Field::PLACEHOLDER => trans('narsil-cms::ui.add_tab'),
                             Field::TYPE => RelationsField::class,
                             Field::SETTINGS => app(RelationsField::class)
                                 ->form(app(FormStepForm::class)->jsonSerialize())
                                 ->intermediate(
-                                    label: trans('narsil::ui.page'),
+                                    label: trans('narsil-cms::ui.page'),
                                     optionLabel: FormStep::LABEL,
                                     optionValue: FormStep::HANDLE,
                                     relation: [
                                         BlockElement::HANDLE => FormStep::RELATION_ELEMENTS,
-                                        BlockElement::LABEL => trans('narsil::validation.attributes.elements'),
+                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.elements'),
                                         BlockElement::RELATION_BASE => [
                                             Field::TYPE => RelationsField::class,
                                             Field::SETTINGS => app(RelationsField::class)

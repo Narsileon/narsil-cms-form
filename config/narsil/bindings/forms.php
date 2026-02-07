@@ -4,10 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Narsil - Form Bindings
+    | Form Bindings
     |--------------------------------------------------------------------------
     |
-    | Mapping between form contracts and their concrete implementations.
+    | Mapping between form contracts and their implementations.
     |
     */
 

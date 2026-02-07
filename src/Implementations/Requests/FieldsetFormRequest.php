@@ -6,7 +6,7 @@ namespace Narsil\Cms\Form\Implementations\Requests;
 
 use Illuminate\Support\Facades\Gate;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
-use Narsil\Cms\Form\Contracts\FormRequests\FieldsetFormRequest as Contract;
+use Narsil\Cms\Form\Contracts\Requests\FieldsetFormRequest as Contract;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Validation\FormRule;

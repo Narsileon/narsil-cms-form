@@ -100,7 +100,7 @@ class InputEditController extends RenderController
             ->action(route('inputs.update', $input->{Input::ID}))
             ->id($input->{Input::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil::ui.update'));
+            ->submitLabel(trans('narsil-cms-form::ui.update'));
 
         return $form;
     }
