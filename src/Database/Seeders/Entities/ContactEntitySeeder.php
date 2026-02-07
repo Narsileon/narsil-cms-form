@@ -31,8 +31,6 @@ class ContactEntitySeeder extends EntitySeeder
      */
     protected function data(): array
     {
-        return [];
-
         $formBlock = new FormBlockSeeder()->run();
         $contactForm = new ContactFormSeeder()->run();
 
