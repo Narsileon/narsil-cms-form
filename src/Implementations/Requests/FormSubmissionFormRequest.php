@@ -4,9 +4,9 @@ namespace Narsil\Cms\Form\Implementations\Requests;
 
 #region USE
 
+use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Form\Contracts\Requests\FormSubmissionFormRequest as Contract;
 use Narsil\Cms\Implementations\AbstractFormRequest;
-use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

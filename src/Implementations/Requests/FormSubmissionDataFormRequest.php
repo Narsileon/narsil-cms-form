@@ -6,6 +6,7 @@ namespace Narsil\Cms\Form\Implementations\Requests;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
+use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Form\Contracts\Requests\FormSubmissionDataFormRequest as Contract;
 use Narsil\Cms\Form\Models\Element;
 use Narsil\Cms\Form\Models\Fieldset;
@@ -14,7 +15,6 @@ use Narsil\Cms\Form\Models\FormStep;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\ValidationRule;
-use Narsil\Cms\Validation\FormRule;
 
 #endregion
 

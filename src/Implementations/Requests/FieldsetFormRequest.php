@@ -5,11 +5,11 @@ namespace Narsil\Cms\Form\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
+use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Form\Contracts\Requests\FieldsetFormRequest as Contract;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Implementations\AbstractFormRequest;
-use Narsil\Cms\Validation\FormRule;
 
 #endregion
 
