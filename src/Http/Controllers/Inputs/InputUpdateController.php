@@ -6,7 +6,7 @@ namespace Narsil\Cms\Form\Http\Controllers\Inputs;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Form\Contracts\Requests\InputFormRequest;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Form\Services\Models\InputService;

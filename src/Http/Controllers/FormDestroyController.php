@@ -6,7 +6,7 @@ namespace Narsil\Cms\Form\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Narsil\Cms\Enums\ModelEventEnum;
+use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Http\Controllers\RedirectController;

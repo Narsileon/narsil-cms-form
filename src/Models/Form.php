@@ -7,9 +7,9 @@ namespace Narsil\Cms\Form\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
+use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Cms\Support\SelectOption;
 use Narsil\Cms\Traits\Blameable;
-use Narsil\Cms\Traits\HasAuditLogs;
 use Narsil\Cms\Traits\HasDatetimes;
 use Narsil\Cms\Traits\HasIdentifier;
 use Narsil\Cms\Traits\HasTranslations;
@@ -23,7 +23,7 @@ use Narsil\Cms\Traits\HasTranslations;
 class Form extends Model
 {
     use Blameable;
-    use HasAuditLogs;
+    use AuditLoggable;
     use HasDatetimes;
     use HasIdentifier;
     use HasTranslations;
