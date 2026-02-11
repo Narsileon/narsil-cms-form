@@ -4,13 +4,13 @@ namespace Narsil\Cms\Form;
 
 #region USE
 
-use Narsil\Cms\Enums\DiskEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Facades\Menus\Sidebar;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Implementations\AbstractMenu;
+use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Providers\NarsilServiceProvider;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Services\PermissionService;
@@ -84,7 +84,7 @@ class ServiceProvider extends NarsilServiceProvider
             $menu
                 ->add(
                     new MenuItem(Form::TABLE)
-                        ->before(DiskEnum::DOCUMENTS->value)
+                        ->before(Template::TABLE)
                         ->group($group)
                         ->icon('form')
                         ->label(ModelService::getTableLabel(Form::TABLE))
