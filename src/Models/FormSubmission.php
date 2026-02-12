@@ -7,7 +7,7 @@ namespace Narsil\Cms\Form\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Cms\Traits\HasDatetimes;
-use Narsil\Base\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Base\Traits\HasUuidKey;
 class FormSubmission extends Model
 {
     use HasDatetimes;
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
 
     #region CONSTRUCTOR
 

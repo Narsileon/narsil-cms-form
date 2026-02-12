@@ -7,7 +7,7 @@ namespace Narsil\Cms\Form\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Cms\Traits\HasTranslations;
-use Narsil\Base\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
@@ -19,7 +19,7 @@ use Narsil\Cms\Traits\IsOrderable;
 class InputOption extends Model
 {
     use HasTranslations;
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
     use IsOrderable;
 
     #region CONSTRUCTOR

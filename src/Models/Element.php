@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Narsil\Cms\Traits\HasIdentifier;
 use Narsil\Cms\Traits\HasTranslations;
-use Narsil\Base\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
@@ -24,7 +24,7 @@ abstract class Element extends MorphPivot
 {
     use HasIdentifier;
     use HasTranslations;
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
     use IsOrderable;
 
     #region CONSTANTS
