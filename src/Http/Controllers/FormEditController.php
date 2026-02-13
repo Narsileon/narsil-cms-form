@@ -7,8 +7,8 @@ namespace Narsil\Cms\Form\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Form\Contracts\Forms\FormForm;
 use Narsil\Cms\Form\Models\Form;
@@ -33,7 +33,7 @@ class FormEditController extends RenderController
      */
     public function __invoke(Request $request, Form $form): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $form);
+        $this->authorize(AbilityEnum::UPDATE, $form);
 
         $data = $this->getData($form);
         $form = $this->getForm($form);

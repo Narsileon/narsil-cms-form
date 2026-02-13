@@ -7,8 +7,8 @@ namespace Narsil\Cms\Form\Http\Controllers\Fieldsets;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Form\Contracts\Forms\FieldsetForm;
 use Narsil\Cms\Form\Models\Fieldset;
@@ -34,7 +34,7 @@ class FieldsetEditController extends RenderController
      */
     public function __invoke(Request $request, Fieldset $fieldset): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $fieldset);
+        $this->authorize(AbilityEnum::UPDATE, $fieldset);
 
         $fieldset->loadMissing([
             Fieldset::RELATION_ELEMENTS . '.' . FieldsetElement::RELATION_BASE,

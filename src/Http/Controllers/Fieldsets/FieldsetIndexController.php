@@ -7,7 +7,7 @@ namespace Narsil\Cms\Form\Http\Controllers\Fieldsets;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Http\Collections\DataTableCollection;
 use Narsil\Cms\Http\Controllers\RenderController;
@@ -30,7 +30,7 @@ class FieldsetIndexController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Fieldset::class);
+        $this->authorize(AbilityEnum::VIEW_ANY, Fieldset::class);
 
         $collection = $this->getCollection();
 

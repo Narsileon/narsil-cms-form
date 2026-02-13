@@ -7,7 +7,7 @@ namespace Narsil\Cms\Form\Http\Controllers\Inputs;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Form\Contracts\Forms\InputForm;
 use Narsil\Cms\Form\Models\Input;
@@ -31,7 +31,7 @@ class InputCreateController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, Input::class);
+        $this->authorize(AbilityEnum::CREATE, Input::class);
 
         $form = $this->getForm();
 

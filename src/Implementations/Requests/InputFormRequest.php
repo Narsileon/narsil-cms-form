@@ -5,11 +5,11 @@ namespace Narsil\Cms\Form\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
+use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Form\Contracts\Requests\InputFormRequest as Contract;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Implementations\AbstractFormRequest;
 
 #endregion
 
@@ -17,7 +17,7 @@ use Narsil\Cms\Implementations\AbstractFormRequest;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class InputFormRequest extends AbstractFormRequest implements Contract
+class InputFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -28,10 +28,10 @@ class InputFormRequest extends AbstractFormRequest implements Contract
     {
         if ($this->input)
         {
-            return Gate::allows(PermissionEnum::UPDATE, $this->input);
+            return Gate::allows(AbilityEnum::UPDATE, $this->input);
         }
 
-        return Gate::allows(PermissionEnum::CREATE, Input::class);
+        return Gate::allows(AbilityEnum::CREATE, Input::class);
     }
 
     /**

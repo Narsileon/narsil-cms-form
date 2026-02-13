@@ -4,9 +4,9 @@ namespace Narsil\Cms\Form\Implementations\Requests;
 
 #region USE
 
+use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Form\Contracts\Requests\FormSubmissionFormRequest as Contract;
-use Narsil\Cms\Implementations\AbstractFormRequest;
 
 #endregion
 
@@ -14,7 +14,7 @@ use Narsil\Cms\Implementations\AbstractFormRequest;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormSubmissionFormRequest extends AbstractFormRequest implements Contract
+class FormSubmissionFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS
 

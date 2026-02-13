@@ -6,8 +6,8 @@ namespace Narsil\Cms\Form\Http\Controllers\Fieldsets;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Services\FieldsetService;
 use Narsil\Cms\Http\Controllers\RedirectController;
@@ -31,7 +31,7 @@ class FieldsetReplicateManyController extends RedirectController
      */
     public function __invoke(ReplicateManyRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Fieldset::class);
+        $this->authorize(AbilityEnum::CREATE, Fieldset::class);
 
         $ids = $request->validated(ReplicateManyRequest::IDS);
 

@@ -6,8 +6,8 @@ namespace Narsil\Cms\Form\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Services\Models\FormService;
 use Narsil\Cms\Http\Controllers\RedirectController;
@@ -31,7 +31,7 @@ class FormReplicateManyController extends RedirectController
      */
     public function __invoke(ReplicateManyRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Form::class);
+        $this->authorize(AbilityEnum::CREATE, Form::class);
 
         $ids = $request->validated(ReplicateManyRequest::IDS);
 

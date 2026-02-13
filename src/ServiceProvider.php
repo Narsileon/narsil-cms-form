@@ -4,7 +4,7 @@ namespace Narsil\Cms\Form;
 
 #region USE
 
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Facades\Menus\Sidebar;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\Form;
@@ -89,7 +89,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->icon('form')
                         ->label(ModelService::getTableLabel(Form::TABLE))
                         ->permissions([
-                            PermissionService::getHandle(Form::TABLE, PermissionEnum::VIEW_ANY->value)
+                            PermissionService::getHandle(Form::TABLE, AbilityEnum::VIEW_ANY->value)
                         ])
                         ->route('forms.index')
                 )
@@ -99,7 +99,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->icon('fieldset')
                         ->label(ModelService::getTableLabel(Fieldset::TABLE))
                         ->permissions([
-                            PermissionService::getHandle(Fieldset::TABLE, PermissionEnum::VIEW_ANY->value)
+                            PermissionService::getHandle(Fieldset::TABLE, AbilityEnum::VIEW_ANY->value)
                         ])
                         ->route('fieldsets.index')
                 )
@@ -109,7 +109,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->icon('input')
                         ->label(ModelService::getTableLabel(Input::TABLE))
                         ->permissions([
-                            PermissionService::getHandle(Input::TABLE, PermissionEnum::VIEW_ANY->value)
+                            PermissionService::getHandle(Input::TABLE, AbilityEnum::VIEW_ANY->value)
                         ])
                         ->route('inputs.index')
                 );

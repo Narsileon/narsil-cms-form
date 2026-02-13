@@ -7,7 +7,7 @@ namespace Narsil\Cms\Form\Http\Controllers\Fieldsets;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Form\Contracts\Forms\FieldsetForm;
 use Narsil\Cms\Form\Models\Fieldset;
@@ -31,7 +31,7 @@ class FieldsetCreateController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, Fieldset::class);
+        $this->authorize(AbilityEnum::CREATE, Fieldset::class);
 
         $form = $this->getForm();
 

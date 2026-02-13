@@ -7,7 +7,7 @@ namespace Narsil\Cms\Form\Http\Controllers\Inputs;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Http\Collections\DataTableCollection;
 use Narsil\Cms\Http\Controllers\RenderController;
@@ -30,7 +30,7 @@ class InputIndexController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Input::class);
+        $this->authorize(AbilityEnum::VIEW_ANY, Input::class);
 
         $collection = $this->getCollection();
 
