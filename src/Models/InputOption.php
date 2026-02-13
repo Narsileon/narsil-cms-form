@@ -6,7 +6,7 @@ namespace Narsil\Cms\Form\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Narsil\Cms\Traits\HasTranslations;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Traits\IsOrderable;
 
