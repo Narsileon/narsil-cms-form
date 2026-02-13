@@ -5,6 +5,7 @@ namespace Narsil\Cms\Form;
 #region USE
 
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Services\PermissionService;
 use Narsil\Cms\Facades\Menus\Sidebar;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\Form;
@@ -13,7 +14,6 @@ use Narsil\Cms\Implementations\AbstractMenu;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Providers\NarsilServiceProvider;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Services\PermissionService;
 use Narsil\Cms\Support\MenuItem;
 
 #endregion
@@ -89,7 +89,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->icon('form')
                         ->label(ModelService::getTableLabel(Form::TABLE))
                         ->permissions([
-                            PermissionService::getHandle(Form::TABLE, AbilityEnum::VIEW_ANY->value)
+                            PermissionService::getName(Form::TABLE, AbilityEnum::VIEW_ANY)
                         ])
                         ->route('forms.index')
                 )
@@ -99,7 +99,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->icon('fieldset')
                         ->label(ModelService::getTableLabel(Fieldset::TABLE))
                         ->permissions([
-                            PermissionService::getHandle(Fieldset::TABLE, AbilityEnum::VIEW_ANY->value)
+                            PermissionService::getName(Fieldset::TABLE, AbilityEnum::VIEW_ANY)
                         ])
                         ->route('fieldsets.index')
                 )
@@ -109,7 +109,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->icon('input')
                         ->label(ModelService::getTableLabel(Input::TABLE))
                         ->permissions([
-                            PermissionService::getHandle(Input::TABLE, AbilityEnum::VIEW_ANY->value)
+                            PermissionService::getName(Input::TABLE, AbilityEnum::VIEW_ANY)
                         ])
                         ->route('inputs.index')
                 );
