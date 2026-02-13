@@ -38,7 +38,7 @@ class FieldsetStoreController extends RedirectController
 
         return $this
             ->redirect(route('fieldsets.index'), $fieldset)
-            ->with('success', ModelService::getSuccessMessage(Fieldset::class, ModelEventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Fieldset::TABLE, ModelEventEnum::CREATED));
     }
 
     #endregion

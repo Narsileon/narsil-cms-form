@@ -44,7 +44,7 @@ class InputReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Input::class, ModelEventEnum::REPLICATED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Input::TABLE, ModelEventEnum::REPLICATED_MANY));
     }
 
     #endregion

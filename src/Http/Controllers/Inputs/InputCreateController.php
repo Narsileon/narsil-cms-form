@@ -49,7 +49,7 @@ class InputCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Input::class);
+        return ModelService::getModelLabel(Input::TABLE);
     }
 
     /**
@@ -72,7 +72,7 @@ class InputCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Input::class);
+        return ModelService::getModelLabel(Input::TABLE);
     }
 
     #endregion

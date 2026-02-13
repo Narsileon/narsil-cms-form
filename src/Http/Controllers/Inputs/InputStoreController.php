@@ -42,7 +42,7 @@ class InputStoreController extends RedirectController
 
         return $this
             ->redirect(route('inputs.index'), $input)
-            ->with('success', ModelService::getSuccessMessage(Input::class, ModelEventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Input::TABLE, ModelEventEnum::CREATED));
     }
 
     #endregion

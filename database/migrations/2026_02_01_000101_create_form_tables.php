@@ -5,7 +5,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Cms\Enums\Database\OperatorEnum;
+use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\FieldsetElement;
 use Narsil\Cms\Form\Models\FieldsetElementCondition;

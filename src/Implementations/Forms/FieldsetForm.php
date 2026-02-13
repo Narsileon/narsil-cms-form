@@ -87,7 +87,7 @@ class FieldsetForm extends AbstractForm implements Contract
                                 ->form(app(FieldsetElementForm::class)->jsonSerialize())
                                 ->addOption(
                                     identifier: Input::TABLE,
-                                    label: ModelService::getModelLabel(Input::class),
+                                    label: ModelService::getModelLabel(Input::TABLE),
                                     optionLabel: FieldsetElement::LABEL,
                                     optionValue: FieldsetElement::HANDLE,
                                     options: $inputSelectOptions,

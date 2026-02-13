@@ -36,7 +36,7 @@ class FieldsetReplicateController extends RedirectController
         FieldsetService::replicate($fieldset);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Fieldset::class, ModelEventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Fieldset::TABLE, ModelEventEnum::REPLICATED));
     }
 
     #endregion

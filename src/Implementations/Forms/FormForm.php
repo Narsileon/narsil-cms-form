@@ -114,7 +114,7 @@ class FormForm extends AbstractForm implements Contract
                                                 ->form(app(FieldsetElementForm::class)->jsonSerialize())
                                                 ->addOption(
                                                     identifier: Fieldset::TABLE,
-                                                    label: ModelService::getModelLabel(Fieldset::class),
+                                                    label: ModelService::getModelLabel(Fieldset::TABLE),
                                                     optionLabel: FormStepElement::LABEL,
                                                     optionValue: FormStepElement::HANDLE,
                                                     options: $fieldsetSelectOptions,
@@ -122,7 +122,7 @@ class FormForm extends AbstractForm implements Contract
                                                 )
                                                 ->addOption(
                                                     identifier: Input::TABLE,
-                                                    label: ModelService::getModelLabel(Input::class),
+                                                    label: ModelService::getModelLabel(Input::TABLE),
                                                     optionLabel: FormStepElement::LABEL,
                                                     optionValue: FormStepElement::HANDLE,
                                                     options: $inputSelectOptions,

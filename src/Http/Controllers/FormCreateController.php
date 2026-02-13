@@ -49,7 +49,7 @@ class FormCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Form::class);
+        return ModelService::getModelLabel(Form::TABLE);
     }
 
     /**
@@ -72,7 +72,7 @@ class FormCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Form::class);
+        return ModelService::getModelLabel(Form::TABLE);
     }
 
     #endregion

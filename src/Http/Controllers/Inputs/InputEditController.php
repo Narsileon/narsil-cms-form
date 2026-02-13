@@ -84,7 +84,7 @@ class InputEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Input::class);
+        return ModelService::getModelLabel(Input::TABLE);
     }
 
     /**
@@ -110,7 +110,7 @@ class InputEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Input::class);
+        return ModelService::getModelLabel(Input::TABLE);
     }
 
     /**

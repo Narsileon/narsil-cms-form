@@ -39,7 +39,7 @@ class FormDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('forms.index'))
-            ->with('success', ModelService::getSuccessMessage(Form::class, ModelEventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Form::TABLE, ModelEventEnum::DELETED_MANY));
     }
 
     #endregion

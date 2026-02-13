@@ -49,7 +49,7 @@ class FieldsetCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Fieldset::class);
+        return ModelService::getModelLabel(Fieldset::TABLE);
     }
 
     /**
@@ -72,7 +72,7 @@ class FieldsetCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Fieldset::class);
+        return ModelService::getModelLabel(Fieldset::TABLE);
     }
 
     #endregion

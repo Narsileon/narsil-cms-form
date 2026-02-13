@@ -43,7 +43,7 @@ class InputUpdateController extends RedirectController
 
         return $this
             ->redirect(route('inputs.index'), $input)
-            ->with('success', ModelService::getSuccessMessage(Input::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Input::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

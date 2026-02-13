@@ -39,7 +39,7 @@ class FieldsetUpdateController extends RedirectController
 
         return $this
             ->redirect(route('fieldsets.index'), $fieldset)
-            ->with('success', ModelService::getSuccessMessage(Fieldset::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Fieldset::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

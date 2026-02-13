@@ -39,7 +39,7 @@ class FieldsetDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('fieldsets.index'))
-            ->with('success', ModelService::getSuccessMessage(Fieldset::class, ModelEventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Fieldset::TABLE, ModelEventEnum::DELETED_MANY));
     }
 
     #endregion

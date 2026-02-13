@@ -36,7 +36,7 @@ class InputReplicateController extends RedirectController
         InputService::replicate($input);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Input::class, ModelEventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Input::TABLE, ModelEventEnum::REPLICATED));
     }
 
     #endregion
