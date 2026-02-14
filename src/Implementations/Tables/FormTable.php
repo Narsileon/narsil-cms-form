@@ -4,7 +4,7 @@ namespace Narsil\Cms\Form\Implementations\Tables;
 
 #region USE
 
-use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\FormStep;
 use Narsil\Cms\Form\Models\FormWebhook;
@@ -51,13 +51,13 @@ class FormTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(FormStep::TABLE),
                 id: Form::COUNT_TABS,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(FormWebhook::TABLE),
                 id: Form::COUNT_WEBHOOKS,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

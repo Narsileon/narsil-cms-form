@@ -114,7 +114,7 @@ class InputForm extends AbstractForm implements Contract
                         ],
                     ],
                     !empty($settings) ? [
-                        TemplateTabElement::LABEL => trans('narsil-cms::ui.settings'),
+                        TemplateTabElement::LABEL => trans('narsil-ui::ui.settings'),
                         TemplateTabElement::RELATION_BASE => [
                             Block::COLLAPSIBLE => true,
                             Block::RELATION_ELEMENTS =>  $settings,

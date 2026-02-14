@@ -4,7 +4,7 @@ namespace Narsil\Cms\Form\Implementations\Tables;
 
 #region USE
 
-use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Implementations\AbstractTable;
@@ -54,13 +54,13 @@ class FieldsetTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(Input::TABLE),
                 id: Fieldset::COUNT_FIELDSETS,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: false,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(Input::TABLE),
                 id: Fieldset::COUNT_INPUTS,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

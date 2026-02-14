@@ -94,7 +94,7 @@ class FormEditController extends RenderController
             ->action(route('forms.update', $form->{Form::ID}))
             ->id($form->{Form::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-cms::ui.update'));
+            ->submitLabel(trans('narsil-ui::ui.update'));
 
         return $form;
     }
