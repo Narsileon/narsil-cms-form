@@ -52,12 +52,14 @@ class FieldsetTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(Input::TABLE),
                 id: Fieldset::COUNT_FIELDSETS,
                 type: PostgreTypeEnum::INTEGER->value,
                 visibility: false,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(Input::TABLE),
                 id: Fieldset::COUNT_INPUTS,
                 type: PostgreTypeEnum::INTEGER->value,

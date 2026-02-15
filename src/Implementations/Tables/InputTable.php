@@ -60,6 +60,7 @@ class InputTable extends AbstractTable
                 visibility: false,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(ValidationRule::TABLE),
                 id: Input::COUNT_VALIDATION_RULES,
                 type: PostgreTypeEnum::INTEGER->value,
