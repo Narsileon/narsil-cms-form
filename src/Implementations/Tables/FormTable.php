@@ -6,11 +6,11 @@ namespace Narsil\Cms\Form\Implementations\Tables;
 
 use Narsil\Base\Enums\InputTypeEnum;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\FormStep;
 use Narsil\Cms\Form\Models\FormWebhook;
-use Narsil\Cms\Implementations\AbstractTable;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Cms\Implementations\AbstractTable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormTable extends AbstractTable
+class FormTable extends Table
 {
     #region CONSTRUCTOR
 
@@ -32,12 +32,12 @@ class FormTable extends AbstractTable
 
     #endregion
 
-    #region PROTECTED METHODS
+    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function columns(): array
+    public function columns(): array
     {
         return [
             new ColumnDefData(

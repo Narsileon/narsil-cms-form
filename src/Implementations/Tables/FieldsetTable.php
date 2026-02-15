@@ -6,10 +6,10 @@ namespace Narsil\Cms\Form\Implementations\Tables;
 
 use Narsil\Base\Enums\InputTypeEnum;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Implementations\AbstractTable;
 
 #endregion
 
@@ -17,7 +17,7 @@ use Narsil\Cms\Implementations\AbstractTable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldsetTable extends AbstractTable
+class FieldsetTable extends Table
 {
     #region CONSTRUCTOR
 
@@ -31,12 +31,12 @@ class FieldsetTable extends AbstractTable
 
     #endregion
 
-    #region PROTECTED METHODS
+    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function columns(): array
+    public function columns(): array
     {
         return [
             new ColumnDefData(
