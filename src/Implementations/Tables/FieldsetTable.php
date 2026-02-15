@@ -4,12 +4,12 @@ namespace Narsil\Cms\Form\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\PostgreTypeEnum;
+use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Implementations\AbstractTable;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\TableColumn;
 
 #endregion
 
@@ -39,38 +39,42 @@ class FieldsetTable extends AbstractTable
     protected function columns(): array
     {
         return [
-            new TableColumn(
+            new ColumnDefData(
                 id: Fieldset::ID,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Fieldset::HANDLE,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Fieldset::LABEL,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(Input::TABLE),
                 id: Fieldset::COUNT_FIELDSETS,
-                type: PostgreTypeEnum::INTEGER->value,
-                visibility: false,
+                type: InputTypeEnum::NUMBER,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(Input::TABLE),
                 id: Fieldset::COUNT_INPUTS,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Fieldset::CREATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Fieldset::UPDATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
         ];

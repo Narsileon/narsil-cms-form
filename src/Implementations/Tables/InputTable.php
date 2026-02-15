@@ -4,12 +4,12 @@ namespace Narsil\Cms\Form\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\PostgreTypeEnum;
+use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\ValidationRule;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\TableColumn;
 
 #endregion
 
@@ -39,39 +39,44 @@ class InputTable extends AbstractTable
     protected function columns(): array
     {
         return [
-            new TableColumn(
+            new ColumnDefData(
                 id: Input::ID,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Input::HANDLE,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Input::LABEL,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Input::DESCRIPTION,
-                visibility: false,
+                type: InputTypeEnum::TEXT,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Input::PLACEHOLDER,
-                visibility: false,
+                type: InputTypeEnum::TEXT,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(ValidationRule::TABLE),
                 id: Input::COUNT_VALIDATION_RULES,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Input::CREATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Input::UPDATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
         ];
