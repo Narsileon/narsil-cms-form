@@ -5,18 +5,12 @@
   "description": "Headless CMS based on Laravel and React",
   "keywords": [
     "cms",
-    "inertia",
     "laravel",
-    "react",
-    "shadcn",
-    "tailwind",
-    "vite"
+    "narsil"
   ],
   "license": "proprietary",
   "require": {
     "php": "^8.4",
-    "inertiajs/inertia-laravel": "^2.0",
-    "laravel/framework": "^12.48",
     "narsil/cms": "dev-main"
   },
   "autoload": {
