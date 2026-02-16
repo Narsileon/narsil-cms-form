@@ -70,7 +70,7 @@ class InputForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => array_filter([
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Input::TABLE, Input::HANDLE),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Input::TABLE, Input::HANDLE),
                         TemplateTabElement::HANDLE => Input::HANDLE,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
@@ -80,7 +80,7 @@ class InputForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Input::TABLE, Input::LABEL),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Input::TABLE, Input::LABEL),
                         TemplateTabElement::HANDLE => Input::LABEL,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
@@ -91,7 +91,7 @@ class InputForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Input::TABLE, Input::DESCRIPTION),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Input::TABLE, Input::DESCRIPTION),
                         TemplateTabElement::HANDLE => Input::DESCRIPTION,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.description'),
                         TemplateTabElement::REQUIRED => true,
