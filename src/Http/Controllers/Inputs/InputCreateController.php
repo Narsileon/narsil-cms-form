@@ -8,11 +8,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Contracts\Forms\InputForm;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -62,7 +62,7 @@ class InputCreateController extends RenderController
         $form = app(InputForm::class)
             ->action(route('inputs.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil-cms::ui.save'));
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

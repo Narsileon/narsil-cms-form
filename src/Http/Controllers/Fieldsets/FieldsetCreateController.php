@@ -8,11 +8,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Contracts\Forms\FieldsetForm;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -62,7 +62,7 @@ class FieldsetCreateController extends RenderController
         $form = app(FieldsetForm::class)
             ->action(route('fieldsets.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil-cms::ui.save'));
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

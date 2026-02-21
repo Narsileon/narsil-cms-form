@@ -7,14 +7,14 @@ namespace Narsil\Cms\Form\Http\Controllers\Fieldsets;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Casts\HumanDatetimeCast;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Contracts\Forms\FieldsetForm;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\FieldsetElement;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -65,8 +65,8 @@ class FieldsetEditController extends RenderController
         $fieldset->loadMissingCreatorAndEditor();
 
         $fieldset->mergeCasts([
-            Fieldset::CREATED_AT => HumanDatetimeCast::class,
-            Fieldset::UPDATED_AT => HumanDatetimeCast::class,
+            Fieldset::CREATED_AT => DiffForHumansCast::class,
+            Fieldset::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $fieldset->toArrayWithTranslations();
@@ -95,7 +95,7 @@ class FieldsetEditController extends RenderController
             ->action(route('fieldsets.update', $fieldset->{Fieldset::ID}))
             ->id($fieldset->{Fieldset::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

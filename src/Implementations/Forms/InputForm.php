@@ -6,21 +6,20 @@ namespace Narsil\Cms\Form\Implementations\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
+use Narsil\Base\Helpers\Translator;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FieldsetData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\CheckboxInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Implementations\Form;
+use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
-use Narsil\Cms\Contracts\Fields\CheckboxField;
-use Narsil\Cms\Contracts\Fields\SelectField;
-use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Form\Contracts\Forms\InputForm as Contract;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\Block;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\ValidationRule;
-use Narsil\Cms\Services\Models\FieldService;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
@@ -28,7 +27,7 @@ use Narsil\Cms\Support\SelectOption;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class InputForm extends AbstractForm implements Contract
+class InputForm extends Form implements Contract
 {
     #region CONSTRUCTOR
 
@@ -49,120 +48,95 @@ class InputForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         $settings = [];
 
-        $abstract = request()->get(Input::TYPE);
+        $type = request()->get(Input::TYPE);
 
-        if ($abstract)
+        if ($type)
         {
-            $concrete = Config::get("narsil.bindings.fields.$abstract");
+            $concrete = Config::get("narsil.inputs.$type");
 
-            $settings = $concrete::getForm(Input::SETTINGS);
+            $settings = $concrete::form(Input::SETTINGS);
         }
 
-        $typeSelectOptions = static::getTypeSelectOptions();
+        $typeOptions = static::getTypeOptions();
 
         return [
-            [
-                TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
-                TemplateTab::RELATION_ELEMENTS => array_filter([
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Input::TABLE, Input::HANDLE),
-                        TemplateTabElement::HANDLE => Input::HANDLE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Input::TABLE, Input::LABEL),
-                        TemplateTabElement::HANDLE => Input::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Input::TABLE, Input::DESCRIPTION),
-                        TemplateTabElement::HANDLE => Input::DESCRIPTION,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.description'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Input::TYPE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.type'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::PLACEHOLDER => trans('narsil-cms::placeholders.search'),
-                            Field::TYPE => SelectField::class,
-                            Field::SETTINGS => app(SelectField::class)
-                                ->reload('form'),
-                            Field::RELATION_OPTIONS => $typeSelectOptions,
-                        ],
-                    ],
-                    !empty($settings) ? [
-                        TemplateTabElement::LABEL => trans('narsil-ui::ui.settings'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Block::COLLAPSIBLE => true,
-                            Block::RELATION_ELEMENTS =>  $settings,
-                        ],
-                    ] : null,
-                ]),
-            ],
-            [
-                TemplateTab::HANDLE => 'validation',
-                TemplateTab::LABEL => trans('narsil-cms::ui.validation'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Input::RELATION_VALIDATION_RULES,
-                        TemplateTabElement::LABEL => trans('narsil-cms::ui.rules'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => CheckboxField::class,
-                            Field::SETTINGS => app(CheckboxField::class)
-                                ->defaultValue([]),
-                            Field::RELATION_OPTIONS => ValidationRule::selectOptions(),
-                        ],
-                    ],
+            new FormStepData(
+                id: 'definition',
+                label: trans('narsil-cms::ui.definition'),
+                elements: [
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(Input::TABLE, Input::HANDLE),
+                        id: Input::HANDLE,
+                        required: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(Input::TABLE, Input::LABEL),
+                        id: Input::LABEL,
+                        required: true,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(Input::TABLE, Input::DESCRIPTION),
+                        id: Input::DESCRIPTION,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Input::TYPE,
+                        required: true,
+                        input: new SelectInputData(
+                            options: $typeOptions,
+                        )
+                            ->reload('form'),
+                    ),
+                    ...($settings ? [
+                        new FieldsetData(
+                            id: Input::SETTINGS,
+                            label: trans('narsil-cms::ui.settings'),
+                            elements: $settings,
+                        ),
+                    ] : []),
                 ],
-            ],
+            ),
+            new FormStepData(
+                id: 'validation',
+                label: trans('narsil-cms::ui.validation'),
+                elements: [
+                    new FieldData(
+                        id: Input::RELATION_VALIDATION_RULES,
+                        label: trans('narsil-cms::ui.rules'),
+                        input: new CheckboxInputData(
+                            options: ValidationRule::options(),
+                        ),
+                    ),
+                ],
+            ),
         ];
     }
 
-    #endregion
-
-    #region PROTECTED METHODS
-
     /**
-     * Get the type select options.
+     * Get the type options.
      *
-     * @return array<SelectOption>
+     * @return array<OptionData>
      */
-    protected static function getTypeSelectOptions(): array
+    protected static function getTypeOptions(): array
     {
         $options = [];
 
-        foreach (Config::get('narsil.inputs', []) as $input)
+        foreach (Config::get('narsil.inputs', []) as $type => $input)
         {
-            $icon = FieldService::getIcon($input);
-            $label = trans('narsil-cms::fields.' . $input);
+            $label = Translator::trans("inputs.$type");
 
-            $options[] = new SelectOption()
-                ->optionIcon($icon)
-                ->optionLabel($label)
-                ->optionValue($input);
+            $options[] = new OptionData(
+                value: $type,
+                label: $label,
+            );
         }
 
         return $options;

@@ -7,14 +7,14 @@ namespace Narsil\Cms\Form\Http\Controllers\Inputs;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Casts\HumanDatetimeCast;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Contracts\Forms\InputForm;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\ValidationRule;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -70,8 +70,8 @@ class InputEditController extends RenderController
         $input->loadMissingCreatorAndEditor();
 
         $input->mergeCasts([
-            Input::CREATED_AT => HumanDatetimeCast::class,
-            Input::UPDATED_AT => HumanDatetimeCast::class,
+            Input::CREATED_AT => DiffForHumansCast::class,
+            Input::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $input->toArrayWithTranslations();

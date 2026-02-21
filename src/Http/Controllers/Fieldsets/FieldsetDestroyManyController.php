@@ -10,7 +10,7 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\DestroyManyRequest;
-use Narsil\Cms\Services\ModelService;
+use Narsil\Base\Services\ModelService;
 
 #endregion
 

@@ -7,13 +7,13 @@ namespace Narsil\Cms\Form\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Casts\HumanDatetimeCast;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Contracts\Forms\FormForm;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -64,8 +64,8 @@ class FormEditController extends RenderController
         ]);
 
         $form->mergeCasts([
-            Form::CREATED_AT => HumanDatetimeCast::class,
-            Form::UPDATED_AT => HumanDatetimeCast::class,
+            Form::CREATED_AT => DiffForHumansCast::class,
+            Form::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $form->toArrayWithTranslations();
@@ -94,7 +94,7 @@ class FormEditController extends RenderController
             ->action(route('forms.update', $form->{Form::ID}))
             ->id($form->{Form::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }
