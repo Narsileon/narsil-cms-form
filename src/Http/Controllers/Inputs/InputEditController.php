@@ -100,7 +100,7 @@ class InputEditController extends RenderController
             ->action(route('inputs.update', $input->{Input::ID}))
             ->id($input->{Input::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-cms-form::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }
@@ -126,7 +126,7 @@ class InputEditController extends RenderController
             ->pluck(ValidationRule::ID)
             ->map(function ($id)
             {
-                return (string)$id;
+                return $id;
             });
 
         $input->setRelation(Input::RELATION_VALIDATION_RULES, $validationRuleIds);

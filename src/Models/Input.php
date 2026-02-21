@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Casts\JsonCast;
-use Narsil\Cms\Form\Services\Models\FieldService;
 use Narsil\Cms\Models\ValidationRule;
+use Narsil\Cms\Services\FieldService;
 use Narsil\Cms\Traits\HasValidationRules;
 
 #endregion

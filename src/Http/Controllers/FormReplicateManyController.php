@@ -10,7 +10,7 @@ use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Models\Form;
-use Narsil\Cms\Form\Services\Models\FormService;
+use Narsil\Cms\Form\Services\FormService;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\ReplicateManyRequest;
 
