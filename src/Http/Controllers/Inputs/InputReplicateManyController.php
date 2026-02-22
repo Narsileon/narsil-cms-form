@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
+use Narsil\Base\Http\Requests\ReplicateManyRequest;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Form\Services\InputService;
-use Narsil\Cms\Http\Requests\ReplicateManyRequest;
 
 #endregion
 

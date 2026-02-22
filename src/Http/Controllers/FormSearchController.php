@@ -7,8 +7,8 @@ namespace Narsil\Cms\Form\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Http\Requests\SearchRequest;
 use Narsil\Cms\Form\Models\Form;
-use Narsil\Cms\Http\Requests\SearchRequest;
 
 #endregion
 

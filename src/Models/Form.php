@@ -7,12 +7,12 @@ namespace Narsil\Cms\Form\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
+use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
+use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
-use Narsil\Cms\Support\SelectOption;
-use Narsil\Cms\Traits\HasIdentifier;
 
 #endregion
 
@@ -22,8 +22,8 @@ use Narsil\Cms\Traits\HasIdentifier;
  */
 class Form extends Model
 {
-    use Blameable;
     use AuditLoggable;
+    use Blameable;
     use HasDatetimes;
     use HasIdentifier;
     use HasTranslations;
@@ -156,9 +156,10 @@ class Form extends Model
                 return self::all()
                     ->map(function (Form $form)
                     {
-                        return (new SelectOption())
-                            ->optionLabel($form->{self::SLUG})
-                            ->optionValue($form->{self::ID});
+                        return new OptionData(
+                            label: $form->{self::SLUG},
+                            value: $form->{self::ID},
+                        );
                     })
                     ->all();
             });
