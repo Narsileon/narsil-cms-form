@@ -5,10 +5,10 @@ namespace Narsil\Cms\Form\Http\Controllers;
 #region USE
 
 use Illuminate\Http\JsonResponse;
+use Narsil\Base\Http\Controllers\RedirectController;
+use Narsil\Base\Http\Data\OptionData;
 use Narsil\Cms\Form\Models\Form;
-use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\SearchRequest;
-use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
@@ -39,9 +39,10 @@ class FormSearchController extends RedirectController
             ->get()
             ->map(function (Form $form)
             {
-                return (new SelectOption())
-                    ->optionLabel($form->{Form::SLUG})
-                    ->optionValue($form->{Form::ATTRIBUTE_IDENTIFIER});
+                return new OptionData(
+                    label: $form->{Form::SLUG},
+                    value: $form->{Form::ATTRIBUTE_IDENTIFIER},
+                );
             })
             ->all();
 

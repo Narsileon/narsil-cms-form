@@ -11,12 +11,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Cms\Form\Contracts\Requests\FormSubmissionDataFormRequest;
 use Narsil\Cms\Form\Contracts\Requests\FormSubmissionFormRequest;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\FormSubmission;
 use Narsil\Cms\Form\Models\FormWebhook;
-use Narsil\Cms\Http\Controllers\RedirectController;
 
 #endregion
 
