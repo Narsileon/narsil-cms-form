@@ -7,13 +7,13 @@ namespace Narsil\Cms\Form;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\PermissionService;
-use Narsil\Cms\Facades\Menus\Sidebar;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Implementations\Menu;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Providers\NarsilServiceProvider;
+use Narsil\Cms\Support\Facades\Sidebar;
 use Narsil\Cms\Support\MenuItem;
 
 #endregion
