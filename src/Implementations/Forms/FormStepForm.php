@@ -4,13 +4,12 @@ namespace Narsil\Cms\Form\Implementations\Forms;
 
 #region USE
 
-use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Implementations\Form;
 use Narsil\Cms\Form\Contracts\Forms\FormStepForm as Contract;
 use Narsil\Cms\Form\Models\FormStep;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 
@@ -18,48 +17,36 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormStepForm extends AbstractForm implements Contract
+class FormStepForm extends Form implements Contract
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         return [
-            [
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => FormStep::HANDLE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => FormStep::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => FormStep::DESCRIPTION,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.description'),
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ]
-                    ],
+            new FormStepData(
+                elements: [
+                    new FieldData(
+                        id: FormStep::HANDLE,
+                        required: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: FormStep::LABEL,
+                        required: true,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: FormStep::DESCRIPTION,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 

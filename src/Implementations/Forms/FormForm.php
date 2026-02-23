@@ -5,26 +5,23 @@ namespace Narsil\Cms\Form\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\TableInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Implementations\Form as BaseForm;
+use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
-use Narsil\Cms\Contracts\Fields\RelationsField;
-use Narsil\Cms\Contracts\Fields\TableField;
-use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Form\Contracts\Forms\FieldsetElementForm;
 use Narsil\Cms\Form\Contracts\Forms\FormForm as Contract;
 use Narsil\Cms\Form\Contracts\Forms\FormStepForm;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\FormStep;
-use Narsil\Cms\Form\Models\FormStepElement;
 use Narsil\Cms\Form\Models\FormWebhook;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\BlockElement;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\SelectOption;
+use Narsil\Cms\Http\Data\Forms\Inputs\RelationsInputData;
 
 #endregion
 
@@ -32,7 +29,7 @@ use Narsil\Cms\Support\SelectOption;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FormForm extends AbstractForm implements Contract
+class FormForm extends BaseForm implements Contract
 {
     #region CONSTRUCTOR
 
@@ -53,157 +50,118 @@ class FormForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
-        $fieldsetSelectOptions = static::getFieldsetsSelectOptions();
-        $inputSelectOptions = static::getInputSelectOptions();
-        $widthSelectOptions = static::getWidthSelectOptions();
+        $fieldsetOptions = static::getFieldsetOptions();
+        $inputOptions = static::getInputOptions();
 
         return [
-            [
-                TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Form::SLUG,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.slug'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Form::RELATION_WEBHOOKS,
-                        TemplateTabElement::LABEL => ModelService::getTableLabel(FormWebhook::TABLE),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TableField::class,
-                            Field::SETTINGS => app(TableField::class)
-                                ->columns([
-                                    [
-                                        BlockElement::HANDLE => FormWebhook::URL,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.url'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => TextField::class,
-                                            Field::SETTINGS => app(TextField::class),
-                                        ],
-                                    ],
-                                ]),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Form::RELATION_STEPS,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.steps'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::PLACEHOLDER => trans('narsil-cms::ui.add_tab'),
-                            Field::TYPE => RelationsField::class,
-                            Field::SETTINGS => app(RelationsField::class)
-                                ->form(app(FormStepForm::class)->jsonSerialize())
-                                ->intermediate(
-                                    label: trans('narsil-cms::ui.page'),
-                                    optionLabel: FormStep::LABEL,
-                                    optionValue: FormStep::HANDLE,
-                                    relation: [
-                                        BlockElement::HANDLE => FormStep::RELATION_ELEMENTS,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.elements'),
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => RelationsField::class,
-                                            Field::SETTINGS => app(RelationsField::class)
-                                                ->form(app(FieldsetElementForm::class)->jsonSerialize())
-                                                ->addOption(
-                                                    identifier: Fieldset::TABLE,
-                                                    label: ModelService::getModelLabel(Fieldset::TABLE),
-                                                    optionLabel: FormStepElement::LABEL,
-                                                    optionValue: FormStepElement::HANDLE,
-                                                    options: $fieldsetSelectOptions,
-                                                    routes: RouteService::getNames(Fieldset::TABLE),
-                                                )
-                                                ->addOption(
-                                                    identifier: Input::TABLE,
-                                                    label: ModelService::getModelLabel(Input::TABLE),
-                                                    optionLabel: FormStepElement::LABEL,
-                                                    optionValue: FormStepElement::HANDLE,
-                                                    options: $inputSelectOptions,
-                                                    routes: RouteService::getNames(Input::TABLE),
-                                                )
-                                                ->widthOptions($widthSelectOptions),
-                                        ],
-                                    ],
+            new FormStepData(
+                id: 'definition',
+                label: trans('narsil::ui.definition'),
+                elements: [
+                    new FieldData(
+                        id: Form::SLUG,
+                        required: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Form::RELATION_WEBHOOKS,
+                        label: ModelService::getTableLabel(FormWebhook::TABLE),
+                        required: true,
+                        input: new TableInputData(
+                            columns: [
+                                new FieldData(
+                                    id: FormWebhook::URL,
+                                    required: true,
+                                    input: new TextInputData(),
                                 ),
-                        ],
-                    ],
+                            ],
+                        ),
+                    ),
+                    new FieldData(
+                        id: Form::RELATION_STEPS,
+                        input: new RelationsInputData()
+                            ->set('form', app(FormStepForm::class))
+                            ->intermediate(
+                                label: trans('narsil-cms::ui.page'),
+                                optionLabel: FormStep::LABEL,
+                                optionValue: FormStep::HANDLE,
+                                relation: new FieldData(
+                                    id: FormStep::RELATION_ELEMENTS,
+                                    input: new RelationsInputData()
+                                        ->set('form', app(FieldsetElementForm::class))
+                                        ->addOption(
+                                            identifier: Fieldset::TABLE,
+                                            label: ModelService::getModelLabel(Fieldset::TABLE),
+                                            optionLabel: Fieldset::LABEL,
+                                            optionValue: Fieldset::HANDLE,
+                                            options: $fieldsetOptions,
+                                            routes: RouteService::getNames(Fieldset::TABLE),
+                                        )
+                                        ->addOption(
+                                            identifier: Input::TABLE,
+                                            label: ModelService::getModelLabel(Input::TABLE),
+                                            optionLabel: Input::LABEL,
+                                            optionValue: Input::HANDLE,
+                                            options: $inputOptions,
+                                            routes: RouteService::getNames(Input::TABLE),
+                                        ),
+                                ),
+                            ),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 
     /**
-     * Get the form fieldset select options.
+     * Get the fieldset options.
      *
-     * @return array<SelectOption>
+     * @return OptionData[]
      */
-    protected static function getFieldsetsSelectOptions(): array
+    protected static function getFieldsetOptions(): array
     {
         return Fieldset::query()
             ->orderBy(Fieldset::LABEL)
             ->get()
-            ->map(function (Fieldset $fieldset)
+            ->map(function (Fieldset $input)
             {
-                $option = new SelectOption()
-                    ->id($fieldset->{Fieldset::ID})
-                    ->identifier($fieldset->{Fieldset::ATTRIBUTE_IDENTIFIER})
-                    ->optionIcon($fieldset->{Fieldset::ATTRIBUTE_ICON})
-                    ->optionLabel($fieldset->getTranslations(Fieldset::LABEL))
-                    ->optionValue($fieldset->{Fieldset::HANDLE});
+                $option = new OptionData(
+                    label: $input->getTranslations(Fieldset::LABEL),
+                    value: $input->{Fieldset::HANDLE},
+                )
+                    ->icon($input->{Fieldset::ATTRIBUTE_ICON})
+                    ->id($input->{Fieldset::ID})
+                    ->identifier($input->{Fieldset::ATTRIBUTE_IDENTIFIER});
 
                 return $option;
             })
             ->toArray();
     }
-
     /**
-     * Get the input select options.
+     * Get the input options.
      *
-     * @return array<SelectOption>
+     * @return OptionData[]
      */
-    protected static function getInputSelectOptions(): array
+    protected static function getInputOptions(): array
     {
         return Input::query()
             ->orderBy(Input::LABEL)
             ->get()
             ->map(function (Input $input)
             {
-                return new SelectOption()
+                $option = new OptionData(
+                    label: $input->getTranslations(Input::LABEL),
+                    value: $input->{Input::HANDLE},
+                )
+                    ->icon($input->{Input::ATTRIBUTE_ICON})
                     ->id($input->{Input::ID})
-                    ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER})
-                    ->optionIcon($input->{Input::ATTRIBUTE_ICON})
-                    ->optionLabel($input->getTranslations(Input::LABEL))
-                    ->optionValue($input->{Input::HANDLE});
+                    ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER});
+
+                return $option;
             })
             ->toArray();
-    }
-
-    /**
-     * Get the width select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected static function getWidthSelectOptions(): array
-    {
-        $widths = [25, 33, 50, 67, 75, 100];
-
-        $options = [];
-
-        foreach ($widths as $width)
-        {
-            $options[] = new SelectOption()
-                ->optionLabel($width . '%')
-                ->optionValue($width);
-        }
-
-        return $options;
     }
 
     #endregion

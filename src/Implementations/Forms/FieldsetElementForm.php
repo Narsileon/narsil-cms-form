@@ -4,15 +4,14 @@ namespace Narsil\Cms\Form\Implementations\Forms;
 
 #region USE
 
-use Narsil\Cms\Contracts\Fields\SwitchField;
-use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Implementations\Form;
 use Narsil\Cms\Contracts\Forms\ConditionForm;
 use Narsil\Cms\Form\Contracts\Forms\FieldsetElementForm as Contract;
 use Narsil\Cms\Form\Models\FieldsetElement;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 
@@ -20,60 +19,45 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldsetElementForm extends AbstractForm implements Contract
+class FieldsetElementForm extends Form implements Contract
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         return [
-            [
-                TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => FieldsetElement::HANDLE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => FieldsetElement::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => FieldsetElement::DESCRIPTION,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.description'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => FieldsetElement::REQUIRED,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.required'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => SwitchField::class,
-                            Field::SETTINGS => app(SwitchField::class),
-                        ],
-                    ],
+            new FormStepData(
+                id: 'definition',
+                label: trans('narsil::ui.definition'),
+                elements: [
+                    new FieldData(
+                        id: FieldsetElement::HANDLE,
+                        required: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: FieldsetElement::LABEL,
+                        required: true,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: FieldsetElement::DESCRIPTION,
+                        required: true,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: FieldsetElement::REQUIRED,
+                        width: 50,
+                        input: new SwitchInputData(),
+                    ),
                 ],
-            ],
-            ...app(ConditionForm::class)->tabs,
+            ),
+            ...app(ConditionForm::class)->steps,
         ];
     }
 

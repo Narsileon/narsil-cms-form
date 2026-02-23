@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
-use Narsil\Cms\Traits\IsOrderable;
+use Narsil\Base\Traits\Orderable;
 
 #endregion
 
@@ -20,7 +20,7 @@ class FormWebhook extends Model
 {
     use HasDatetimes;
     use HasUuidPrimaryKey;
-    use IsOrderable;
+    use Orderable;
 
     #region CONSTRUCTOR
 

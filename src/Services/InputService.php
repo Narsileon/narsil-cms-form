@@ -4,10 +4,10 @@ namespace Narsil\Cms\Form\Services;
 
 #region USE
 
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Form\Models\InputOption;
 use Narsil\Cms\Models\ValidationRule;
-use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

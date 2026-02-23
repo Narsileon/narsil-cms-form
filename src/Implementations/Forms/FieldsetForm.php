@@ -5,20 +5,19 @@ namespace Narsil\Cms\Form\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Implementations\Form;
+use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
-use Narsil\Cms\Contracts\Fields\RelationsField;
-use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Form\Contracts\Forms\FieldsetElementForm;
 use Narsil\Cms\Form\Contracts\Forms\FieldsetForm as Contract;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\FieldsetElement;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\SelectOption;
+use Narsil\Cms\Http\Data\Forms\Inputs\RelationsInputData;
 
 #endregion
 
@@ -26,7 +25,7 @@ use Narsil\Cms\Support\SelectOption;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldsetForm extends AbstractForm implements Contract
+class FieldsetForm extends Form implements Contract
 {
     #region CONSTRUCTOR
 
@@ -47,104 +46,67 @@ class FieldsetForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
-        $inputSelectOptions = static::getInputSelectOptions();
-        $widthSelectOptions = static::getWidthSelectOptions();
+        $inputOptions = static::getInputOptions();
 
         return [
-            [
-                TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Fieldset::TABLE, Fieldset::HANDLE),
-                        TemplateTabElement::HANDLE => Fieldset::HANDLE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Fieldset::TABLE, Fieldset::LABEL),
-                        TemplateTabElement::HANDLE => Fieldset::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Fieldset::RELATION_ELEMENTS,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.elements'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => RelationsField::class,
-                            Field::SETTINGS => app(RelationsField::class)
-                                ->form(app(FieldsetElementForm::class)->jsonSerialize())
-                                ->addOption(
-                                    identifier: Input::TABLE,
-                                    label: ModelService::getModelLabel(Input::TABLE),
-                                    optionLabel: FieldsetElement::LABEL,
-                                    optionValue: FieldsetElement::HANDLE,
-                                    options: $inputSelectOptions,
-                                    routes: RouteService::getNames(Input::TABLE),
-                                )
-                                ->widthOptions($widthSelectOptions),
-                        ],
-                    ],
+            new FormStepData(
+                elements: [
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(Fieldset::TABLE, Fieldset::HANDLE),
+                        id: Fieldset::HANDLE,
+                        required: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(Fieldset::TABLE, Fieldset::LABEL),
+                        id: Fieldset::LABEL,
+                        required: true,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Fieldset::RELATION_ELEMENTS,
+                        input: new RelationsInputData()
+                            ->set('form', app(FieldsetElementForm::class))
+                            ->addOption(
+                                identifier: Input::TABLE,
+                                label: ModelService::getModelLabel(Input::TABLE),
+                                optionLabel: FieldsetElement::LABEL,
+                                optionValue: FieldsetElement::HANDLE,
+                                options: $inputOptions,
+                                routes: RouteService::getNames(Input::TABLE),
+                            ),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 
     /**
-     * Get the input select options.
+     * Get the input options.
      *
-     * @return array<SelectOption>
+     * @return OptionData[]
      */
-    protected static function getInputSelectOptions(): array
+    protected static function getInputOptions(): array
     {
         return Input::query()
             ->orderBy(Input::LABEL)
             ->get()
             ->map(function (Input $input)
             {
-
-                $option = new SelectOption()
+                $option = new OptionData(
+                    label: $input->getTranslations(Input::LABEL),
+                    value: $input->{Input::HANDLE},
+                )
+                    ->icon($input->{Input::ATTRIBUTE_ICON})
                     ->id($input->{Input::ID})
-                    ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER})
-                    ->optionIcon($input->{Input::ATTRIBUTE_ICON})
-                    ->optionLabel($input->getTranslations(Input::LABEL))
-                    ->optionValue($input->{Input::HANDLE});
+                    ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER});
 
                 return $option;
             })
             ->toArray();
-    }
-
-    /**
-     * Get the width select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected static function getWidthSelectOptions(): array
-    {
-        $widths = [25, 33, 50, 67, 75, 100];
-
-        $options = [];
-
-        foreach ($widths as $width)
-        {
-            $options[] = new SelectOption()
-                ->optionLabel($width . '%')
-                ->optionValue($width);
-        }
-
-        return $options;
     }
 
     #endregion
