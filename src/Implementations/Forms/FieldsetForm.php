@@ -54,14 +54,14 @@ class FieldsetForm extends Form implements Contract
             new FormStepData(
                 elements: [
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Fieldset::TABLE, Fieldset::HANDLE),
                         id: Fieldset::HANDLE,
+                        description: ModelService::getAttributeDescription(Fieldset::TABLE, Fieldset::HANDLE),
                         required: true,
                         input: new TextInputData(),
                     ),
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Fieldset::TABLE, Fieldset::LABEL),
                         id: Fieldset::LABEL,
+                        description: ModelService::getAttributeDescription(Fieldset::TABLE, Fieldset::LABEL),
                         required: true,
                         translatable: true,
                         input: new TextInputData(),

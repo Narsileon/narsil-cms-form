@@ -69,21 +69,21 @@ class InputForm extends Form implements Contract
                 label: trans('narsil-cms::ui.definition'),
                 elements: [
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Input::TABLE, Input::HANDLE),
                         id: Input::HANDLE,
+                        description: ModelService::getAttributeDescription(Input::TABLE, Input::HANDLE),
                         required: true,
                         input: new TextInputData(),
                     ),
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Input::TABLE, Input::LABEL),
                         id: Input::LABEL,
+                        description: ModelService::getAttributeDescription(Input::TABLE, Input::LABEL),
                         required: true,
                         translatable: true,
                         input: new TextInputData(),
                     ),
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Input::TABLE, Input::DESCRIPTION),
                         id: Input::DESCRIPTION,
+                        description: ModelService::getAttributeDescription(Input::TABLE, Input::DESCRIPTION),
                         translatable: true,
                         input: new TextInputData(),
                     ),
