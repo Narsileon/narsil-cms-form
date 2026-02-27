@@ -58,7 +58,7 @@ class InputForm extends Form implements Contract
         {
             $concrete = Config::get("narsil.inputs.$type");
 
-            $settings = $concrete::form(Input::SETTINGS);
+            $settings = $concrete::getInputForm(Input::SETTINGS);
         }
 
         $typeOptions = static::getTypeOptions();
