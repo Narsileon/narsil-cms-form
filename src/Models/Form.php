@@ -4,6 +4,8 @@ namespace Narsil\Cms\Form\Models;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
@@ -12,7 +14,7 @@ use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasIdentifier;
-use Narsil\Base\Traits\HasTranslations;
+use Narsil\Cms\Form\Database\Factories\FormFactory;
 
 #endregion
 
@@ -20,13 +22,14 @@ use Narsil\Base\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(FormFactory::class)]
 class Form extends Model
 {
     use AuditLoggable;
     use Blameable;
     use HasDatetimes;
+    use HasFactory;
     use HasIdentifier;
-    use HasTranslations;
 
     #region CONSTRUCTOR
 
@@ -40,11 +43,6 @@ class Form extends Model
         $this->mergeGuarded([
             self::ID,
         ]);
-
-        $this->translatable = [
-            self::DESCRIPTION,
-            self::TITLE,
-        ];
 
         $this->with = [
             self::RELATION_STEPS,
@@ -67,13 +65,6 @@ class Form extends Model
     #region • COLUMNS
 
     /**
-     * The name of the "description" column.
-     *
-     * @var string
-     */
-    final public const DESCRIPTION = 'description';
-
-    /**
      * The name of the "id" column.
      *
      * @var string
@@ -86,13 +77,6 @@ class Form extends Model
      * @var string
      */
     final public const SLUG = 'slug';
-
-    /**
-     * The name of the "title" column.
-     *
-     * @var string
-     */
-    final public const TITLE = 'title';
 
     #endregion
 

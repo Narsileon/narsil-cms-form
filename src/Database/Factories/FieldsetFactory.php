@@ -1,0 +1,34 @@
+<?php
+
+namespace Narsil\Cms\Forms\Database\Factories;
+
+#region USE
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Narsil\Cms\Form\Models\Fieldset;
+
+#endregion
+
+/**
+ * @version 1.0.0
+ * @author Jonathan Rigaux
+ */
+class FieldsetFactory extends Factory
+{
+    #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public function definition(): array
+    {
+        $slug = $this->faker->slug(1);
+
+        return [
+            Fieldset::HANDLE => Fieldset::snake($slug),
+            Fieldset::LABEL => Fieldset::headline($slug),
+        ];
+    }
+
+    #endregion
+}

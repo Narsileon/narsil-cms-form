@@ -4,12 +4,12 @@ namespace Narsil\Cms\Form\Database\Seeders\Entities;
 
 #region USE
 
-use Narsil\Cms\Database\Seeders\Blocks\LayoutBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\PaddingBlockSeeder;
+use Narsil\Cms\Database\Factories\Blocks\LayoutBlock;
+use Narsil\Cms\Database\Factories\Blocks\PaddingBlock;
+use Narsil\Cms\Database\Factories\Templates\ContentTemplate;
 use Narsil\Cms\Database\Seeders\EntitySeeder;
-use Narsil\Cms\Database\Seeders\Templates\ContentTemplateSeeder;
-use Narsil\Cms\Form\Database\Seeders\Blocks\FormBlockSeeder;
-use Narsil\Cms\Form\Database\Seeders\Forms\ContactFormSeeder;
+use Narsil\Cms\Form\Database\Factories\Blocks\FormBlock;
+use Narsil\Cms\Form\Database\Factories\Forms\ContactForm;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Template;
@@ -31,21 +31,21 @@ class ContactEntitySeeder extends EntitySeeder
      */
     protected function data(): array
     {
-        $formBlock = new FormBlockSeeder()->run();
-        $contactForm = new ContactFormSeeder()->run();
+        $contactForm = ContactForm::run();
+        $formBlock = FormBlock::run();
 
         return [
-            ContentTemplateSeeder::CONTENT => [[
+            ContentTemplate::CONTENT => [[
                 EntityNode::BLOCK_ID => $formBlock->{Block::ID},
                 EntityNode::RELATION_CHILDREN => [
-                    FormBlockSeeder::LAYOUT => [
-                        LayoutBlockSeeder::SIZE => 'sm',
-                        LayoutBlockSeeder::PADDING => [
-                            PaddingBlockSeeder::TOP => 'md',
-                            PaddingBlockSeeder::BOTTOM => 'md',
+                    FormBlock::LAYOUT => [
+                        LayoutBlock::SIZE => 'sm',
+                        LayoutBlock::PADDING => [
+                            PaddingBlock::TOP => 'md',
+                            PaddingBlock::BOTTOM => 'md',
                         ],
                     ],
-                    FormBlockSeeder::FORM => $contactForm->{Form::ATTRIBUTE_IDENTIFIER},
+                    FormBlock::FORM => $contactForm->{Form::ATTRIBUTE_IDENTIFIER},
                 ],
             ]],
         ];

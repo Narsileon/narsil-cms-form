@@ -4,6 +4,8 @@ namespace Narsil\Cms\Form\Models;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Base\Traits\Orderable;
+use Narsil\Cms\Form\Database\Factories\FormStepFactory;
 
 #endregion
 
@@ -18,8 +21,10 @@ use Narsil\Base\Traits\Orderable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(FormStepFactory::class)]
 class FormStep extends Model
 {
+    use HasFactory;
     use HasTranslations;
     use HasUuidPrimaryKey;
     use Orderable;
@@ -95,13 +100,6 @@ class FormStep extends Model
     #region • RELATIONS
 
     /**
-     * The name of the "blocks" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_BlOCKS = 'blocks';
-
-    /**
      * The name of the "elements" relation.
      *
      * @var string
@@ -109,11 +107,11 @@ class FormStep extends Model
     final public const RELATION_ELEMENTS = 'elements';
 
     /**
-     * The name of the "fields" relation.
+     * The name of the "fieldsets" relation.
      *
      * @var string
      */
-    final public const RELATION_FIELDS = 'fields';
+    final public const RELATION_FIELDSETS = 'fieldsets';
 
     /**
      * The name of the "form" relation.
@@ -121,6 +119,13 @@ class FormStep extends Model
      * @var string
      */
     final public const RELATION_FORM = 'form';
+
+    /**
+     * The name of the "inputs" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_INPUTS = 'inputs';
 
     #endregion
 
