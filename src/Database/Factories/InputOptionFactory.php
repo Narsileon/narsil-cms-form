@@ -23,7 +23,7 @@ class InputOptionFactory extends Factory
     public function definition(): array
     {
         return [
-            InputOption::LABEL => $this->faker->word(),
+            InputOption::LABEL => $this->faker->words(1),
             InputOption::VALUE => $this->faker->randomNumber(6),
         ];
     }

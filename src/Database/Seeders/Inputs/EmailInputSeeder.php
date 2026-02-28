@@ -1,9 +1,10 @@
 <?php
 
-namespace Narsil\Cms\Form\Database\Factories\Inputs;
+namespace Narsil\Cms\Form\Database\Seeders\Inputs;
 
 #region USE
 
+use Illuminate\Database\Seeder;
 use Narsil\Base\Http\Data\Forms\Inputs\EmailInputData;
 use Narsil\Cms\Form\Models\Input;
 
@@ -13,14 +14,14 @@ use Narsil\Cms\Form\Models\Input;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class EmailInput
+final class EmailInputSeeder extends Seeder
 {
     #region PUBLIC METHODS
 
     /**
      * @return Input
      */
-    public static function run(): Input
+    public function run(): Input
     {
         if ($input = Input::firstWhere(Input::HANDLE, 'email'))
         {

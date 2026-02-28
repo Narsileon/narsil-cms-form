@@ -1,11 +1,12 @@
 <?php
 
-namespace Narsil\Cms\Form\Database\Factories\Forms;
+namespace Narsil\Cms\Form\Database\Seeders\Forms;
 
 #region USE
 
-use Narsil\Cms\Form\Database\Factories\Fieldsets\PersonalInformationFieldset;
-use Narsil\Cms\Form\Database\Factories\Inputs\MessageInput;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Form\Database\Seeders\Fieldsets\PersonalInformationFieldsetSeeder;
+use Narsil\Cms\Form\Database\Seeders\Inputs\MessageInputSeeder;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\FormStep;
 use Narsil\Cms\Models\Collections\Template;
@@ -18,7 +19,7 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class ContactForm
+final class ContactFormSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -42,17 +43,17 @@ abstract class ContactForm
     #region PUBLIC METHODS
 
     /**
-     * @return Template
+     * @return Form
      */
-    public static function run(): Template
+    public function run(): Form
     {
-        if ($field = Template::firstWhere(Template::TABLE_NAME, 'contact'))
+        if ($form = Template::firstWhere(Template::TABLE_NAME, 'contact'))
         {
-            return $field;
+            return $form;
         }
 
-        $messageInput = MessageInput::run();
-        $personalInformationfieldset = PersonalInformationFieldset::run();
+        $MessageInputSeeder = new MessageInputSeeder()->run();
+        $PersonalInformationFieldsetSeeder = new PersonalInformationFieldsetSeeder()->run();
 
         return Form::factory()
             ->has(
@@ -61,7 +62,7 @@ abstract class ContactForm
                     FormStep::LABEL => 'How can we help you?',
                     FormStep::POSITION => 0,
                 ])->hasAttached(
-                    $messageInput,
+                    $MessageInputSeeder,
                     [
                         TemplateTabElement::HANDLE => self::MESSAGE,
                         TemplateTabElement::LABEL => 'Message',
@@ -76,7 +77,7 @@ abstract class ContactForm
                     FormStep::HANDLE => 'contact_informations',
                     FormStep::LABEL => 'How can we contact you back?',
                 ])->hasAttached(
-                    $personalInformationfieldset,
+                    $PersonalInformationFieldsetSeeder,
                     [
                         TemplateTabElement::HANDLE => self::PERSONAL_INFORMATION,
                         TemplateTabElement::LABEL  => 'Personal information',

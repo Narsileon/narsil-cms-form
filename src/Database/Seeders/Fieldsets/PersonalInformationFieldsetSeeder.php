@@ -1,11 +1,12 @@
 <?php
 
-namespace Narsil\Cms\Form\Database\Factories\Fieldsets;
+namespace Narsil\Cms\Form\Database\Seeders\Fieldsets;
 
 #region USE
 
-use Narsil\Cms\Form\Database\Factories\Inputs\EmailInput;
-use Narsil\Cms\Form\Database\Factories\Inputs\NameInput;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Form\Database\Seeders\Inputs\EmailInputSeeder;
+use Narsil\Cms\Form\Database\Seeders\Inputs\NameInputSeeder;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\FieldsetElement;
 
@@ -15,7 +16,7 @@ use Narsil\Cms\Form\Models\FieldsetElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class PersonalInformationFieldset
+final class PersonalInformationFieldsetSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -47,19 +48,19 @@ abstract class PersonalInformationFieldset
     /**
      * @return Fieldset
      */
-    public static function run(): Fieldset
+    public function run(): Fieldset
     {
-        if ($block = Fieldset::firstWhere(Fieldset::HANDLE, 'personal_information'))
+        if ($fieldset = Fieldset::firstWhere(Fieldset::HANDLE, 'personal_information'))
         {
-            return $block;
+            return $fieldset;
         }
 
-        $emailInput = EmailInput::run();
-        $nameInput = NameInput::run();
+        $EmailInputSeeder = new EmailInputSeeder()->run();
+        $NameInputSeeder = new NameInputSeeder()->run();
 
         return Fieldset::factory()
             ->hasAttached(
-                $nameInput,
+                $NameInputSeeder,
                 [
                     FieldsetElement::HANDLE => self::FIRST_NAME,
                     FieldsetElement::LABEL => 'First name',
@@ -70,7 +71,7 @@ abstract class PersonalInformationFieldset
                 Fieldset::RELATION_INPUTS
             )
             ->hasAttached(
-                $nameInput,
+                $NameInputSeeder,
                 [
                     FieldsetElement::HANDLE => self::LAST_NAME,
                     FieldsetElement::LABEL  => 'Last mame',
@@ -81,7 +82,7 @@ abstract class PersonalInformationFieldset
                 Fieldset::RELATION_INPUTS
             )
             ->hasAttached(
-                $emailInput,
+                $EmailInputSeeder,
                 [
                     FieldsetElement::HANDLE => self::EMAIL,
                     FieldsetElement::LABEL  => 'Email',

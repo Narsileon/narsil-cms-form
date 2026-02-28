@@ -1,11 +1,12 @@
 <?php
 
-namespace Narsil\Cms\Form\Database\Factories\Blocks;
+namespace Narsil\Cms\Form\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Database\Factories\Blocks\LayoutBlock;
-use Narsil\Cms\Form\Database\Factories\Fields\FormField;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Database\Seeders\Blocks\LayoutBlockSeeder;
+use Narsil\Cms\Form\Database\Seeders\Fields\FormFieldSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 
@@ -15,7 +16,7 @@ use Narsil\Cms\Models\Collections\BlockElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class FormBlock
+final class FormBlockSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -40,19 +41,19 @@ abstract class FormBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'form'))
         {
             return $block;
         }
 
-        $formField = FormField::run();
-        $layoutBlock = LayoutBlock::run();
+        $FormFieldSeeder = new FormFieldSeeder()->run();
+        $LayoutBlockSeeder = new LayoutBlockSeeder()->run();
 
         return Block::factory()
             ->hasAttached(
-                $layoutBlock,
+                $LayoutBlockSeeder,
                 [
                     BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Layout',
@@ -61,7 +62,7 @@ abstract class FormBlock
                 Block::RELATION_BLOCKS
             )
             ->hasAttached(
-                $formField,
+                $FormFieldSeeder,
                 [
                     BlockElement::HANDLE => self::FORM,
                     BlockElement::LABEL  => 'Form',
