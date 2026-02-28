@@ -29,18 +29,18 @@ class FieldData extends BaseFieldData
      */
     public static function fromElement(Element $element): FieldData
     {
-        $input = $element->{Element::RELATION_BASE};
+        $base = $element->{Element::RELATION_BASE};
 
-        $input = Config::get('narsil.fields.' . $input->{Input::TYPE}, TextInputData::class);
+        $input = Config::get('narsil.fields.' . $base->{Input::TYPE}, TextInputData::class);
 
         return new FieldData(
-            id: $element->{Element::HANDLE} ?? $input->{Input::HANDLE},
-            label: $element->{Element::LABEL} ?? $input->{Input::LABEL},
-            description: $element->{Element::DESCRIPTION} ?? $input->{Input::DESCRIPTION},
+            id: $element->{Element::HANDLE} ?? $base->{Input::HANDLE},
+            label: $element->{Element::LABEL} ?? $base->{Input::LABEL},
+            description: $element->{Element::DESCRIPTION} ?? $base->{Input::DESCRIPTION},
             required: $element->{Element::REQUIRED},
             width: $element->{Element::WIDTH},
             input: new $input()
-                ->options($input->{Input::RELATION_OPTIONS}),
+                ->options($base->{Input::RELATION_OPTIONS}),
         );
     }
 

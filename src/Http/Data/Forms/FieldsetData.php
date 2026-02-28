@@ -9,7 +9,6 @@ use Narsil\Cms\Form\Models\Element;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\FieldsetElement;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Http\Data\Forms\FieldData;
 
 #endregion
 
@@ -33,13 +32,13 @@ class FieldsetData extends BaseFieldsetData
      */
     public static function fromElement(Element $element): FieldsetData
     {
-        $fieldset = $element->{Element::RELATION_BASE};
+        $base = $element->{Element::RELATION_BASE};
 
         return new FieldsetData(
-            description: $element->{Element::DESCRIPTION} ?? $fieldset->{Fieldset::DESCRIPTION},
-            id: $element->{Element::HANDLE} ?? $fieldset->{Fieldset::HANDLE},
-            label: $element->{Element::LABEL} ?? $fieldset->{Fieldset::LABEL},
-            elements: $fieldset->{Fieldset::RELATION_ELEMENTS}->map(function ($element)
+            description: $element->{Element::DESCRIPTION} ?? $base->{Fieldset::DESCRIPTION},
+            id: $element->{Element::HANDLE} ?? $base->{Fieldset::HANDLE},
+            label: $element->{Element::LABEL} ?? $base->{Fieldset::LABEL},
+            elements: $base->{Fieldset::RELATION_ELEMENTS}->map(function ($element)
             {
                 if ($element->{FieldsetElement::BASE_TYPE} === Input::TABLE)
                 {
