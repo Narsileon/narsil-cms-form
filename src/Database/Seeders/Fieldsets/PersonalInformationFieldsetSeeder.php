@@ -74,7 +74,7 @@ final class PersonalInformationFieldsetSeeder extends Seeder
                 $NameInputSeeder,
                 [
                     FieldsetElement::HANDLE => self::LAST_NAME,
-                    FieldsetElement::LABEL  => 'Last mame',
+                    FieldsetElement::LABEL  => 'Last name',
                     FieldsetElement::POSITION => 1,
                     FieldsetElement::REQUIRED => true,
                     FieldsetElement::WIDTH => 50,
