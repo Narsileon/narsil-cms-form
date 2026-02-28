@@ -5,6 +5,7 @@ namespace Narsil\Cms\Form\Database\Factories;
 #region USE
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 use Narsil\Cms\Form\Models\Fieldset;
 
 #endregion
@@ -25,8 +26,8 @@ class FieldsetFactory extends Factory
         $slug = $this->faker->slug(1);
 
         return [
-            Fieldset::HANDLE => Fieldset::snake($slug),
-            Fieldset::LABEL => Fieldset::headline($slug),
+            Fieldset::HANDLE => Str::snake($slug),
+            Fieldset::LABEL => Str::headline($slug),
         ];
     }
 

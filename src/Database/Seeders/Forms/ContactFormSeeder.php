@@ -9,9 +9,7 @@ use Narsil\Cms\Form\Database\Seeders\Fieldsets\PersonalInformationFieldsetSeeder
 use Narsil\Cms\Form\Database\Seeders\Inputs\MessageInputSeeder;
 use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\FormStep;
-use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Form\Models\FormStepElement;
 
 #endregion
 
@@ -47,7 +45,7 @@ final class ContactFormSeeder extends Seeder
      */
     public function run(): Form
     {
-        if ($form = Template::firstWhere(Template::TABLE_NAME, 'contact'))
+        if ($form = Form::firstWhere(Form::SLUG, 'contact'))
         {
             return $form;
         }
@@ -64,13 +62,13 @@ final class ContactFormSeeder extends Seeder
                 ])->hasAttached(
                     $MessageInputSeeder,
                     [
-                        TemplateTabElement::HANDLE => self::MESSAGE,
-                        TemplateTabElement::LABEL => 'Message',
-                        TemplateTabElement::POSITION => 0,
+                        FormStepElement::HANDLE => self::MESSAGE,
+                        FormStepElement::LABEL => 'Message',
+                        FormStepElement::POSITION => 0,
                     ],
-                    TemplateTab::RELATION_FIELDS
+                    FormStep::RELATION_INPUTS
                 ),
-                FormStep::RELATION_INPUTS
+                Form::RELATION_STEPS
             )
             ->has(
                 FormStep::factory()->state([
@@ -79,13 +77,13 @@ final class ContactFormSeeder extends Seeder
                 ])->hasAttached(
                     $PersonalInformationFieldsetSeeder,
                     [
-                        TemplateTabElement::HANDLE => self::PERSONAL_INFORMATION,
-                        TemplateTabElement::LABEL  => 'Personal information',
-                        TemplateTabElement::POSITION => 1,
+                        FormStepElement::HANDLE => self::PERSONAL_INFORMATION,
+                        FormStepElement::LABEL  => 'Personal information',
+                        FormStepElement::POSITION => 1,
                     ],
-                    TemplateTab::RELATION_FIELDS
+                    FormStep::RELATION_FIELDSETS
                 ),
-                Template::RELATION_TABS
+                Form::RELATION_STEPS
             )
             ->create([
                 Form::SLUG => 'contact',

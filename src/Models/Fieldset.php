@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Narsil\Cms\Forms\Database\Factories\FieldsetFactory;
+use Narsil\Cms\Form\Database\Factories\FieldsetFactory;
 
 #endregion
 
