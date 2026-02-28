@@ -14,6 +14,7 @@ use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasIdentifier;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Form\Database\Factories\FormFactory;
 
 #endregion
@@ -30,6 +31,7 @@ class Form extends Model
     use HasDatetimes;
     use HasFactory;
     use HasIdentifier;
+    use HasTranslations;
 
     #region CONSTRUCTOR
 
