@@ -67,6 +67,7 @@ final class FormBlockSeeder extends Seeder
                     BlockElement::HANDLE => self::FORM,
                     BlockElement::LABEL  => 'Form',
                     BlockElement::POSITION => 1,
+                    BlockElement::REQUIRED => true,
                 ],
                 Block::RELATION_FIELDS
             )
