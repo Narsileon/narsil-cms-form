@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Cache;
 use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Interfaces\Searchable;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
@@ -24,7 +24,7 @@ use Narsil\Cms\Form\Database\Factories\FormFactory;
  * @author Jonathan Rigaux
  */
 #[UseFactory(FormFactory::class)]
-class Form extends Model
+class Form extends Model implements Searchable
 {
     use AuditLoggable;
     use Blameable;
@@ -130,25 +130,15 @@ class Form extends Model
     #region PUBLIC METHODS
 
     /**
-     * Get the forms as select options.
-     *
-     * @return array<SelectOption>
+     * {@inheritDoc}
      */
-    public static function selectOptions(): array
+    public function toOption(): OptionData
     {
-        return Cache::tags([self::TABLE])
-            ->rememberForever('select_options', function ()
-            {
-                return self::all()
-                    ->map(function (Form $form)
-                    {
-                        return new OptionData(
-                            label: $form->{self::SLUG},
-                            value: $form->{self::ID},
-                        );
-                    })
-                    ->all();
-            });
+        return new OptionData(
+            label: $this->{self::SLUG},
+            value: $this->{self::ID},
+        )
+            ->identifier($this->{self::ATTRIBUTE_IDENTIFIER});
     }
 
     #region • RELATIONSHIPS
