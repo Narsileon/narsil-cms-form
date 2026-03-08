@@ -32,7 +32,7 @@ class ReplicateForm extends Action implements Contract
             ])
             ->save();
 
-        $formSteps = $form->tabs()->get()->toArray();
+        $formSteps = $form->steps()->get()->toArray();
 
         app(SyncFormSteps::class)
             ->run($replicated, $formSteps);
