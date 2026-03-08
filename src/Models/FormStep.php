@@ -18,7 +18,6 @@ use Narsil\Cms\Form\Database\Factories\FormStepFactory;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 #[UseFactory(FormStepFactory::class)]

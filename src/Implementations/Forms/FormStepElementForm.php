@@ -16,7 +16,6 @@ use Narsil\Cms\Form\Models\FormStepElement;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FormStepElementForm extends Form implements Contract

@@ -14,7 +14,6 @@ use Narsil\Cms\Form\Models\Fieldset;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FieldsetFormRequest extends FormRequest implements Contract

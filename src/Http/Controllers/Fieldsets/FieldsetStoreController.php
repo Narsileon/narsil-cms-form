@@ -16,7 +16,6 @@ use Narsil\Cms\Form\Services\FieldsetService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FieldsetStoreController extends RedirectController

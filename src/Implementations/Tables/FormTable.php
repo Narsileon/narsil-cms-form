@@ -17,7 +17,6 @@ use Narsil\Cms\Form\Models\FormWebhook;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FormTable extends Table

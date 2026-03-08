@@ -26,7 +26,6 @@ use Narsil\Cms\Http\Data\Forms\Inputs\RelationsInputData;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FormForm extends BaseForm implements Contract

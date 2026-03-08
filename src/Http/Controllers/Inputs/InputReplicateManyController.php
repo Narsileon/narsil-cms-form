@@ -17,7 +17,6 @@ use Narsil\Cms\Form\Services\InputService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class InputReplicateManyController extends RedirectController

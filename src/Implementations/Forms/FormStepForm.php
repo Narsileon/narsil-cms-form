@@ -14,7 +14,6 @@ use Narsil\Cms\Form\Models\FormStep;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FormStepForm extends Form implements Contract

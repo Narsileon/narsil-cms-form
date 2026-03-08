@@ -16,7 +16,6 @@ use Narsil\Cms\Form\Database\Factories\InputOptionFactory;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 #[UseFactory(InputOptionFactory::class)]

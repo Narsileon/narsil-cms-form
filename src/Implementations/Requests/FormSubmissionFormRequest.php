@@ -11,7 +11,6 @@ use Narsil\Cms\Form\Contracts\Requests\FormSubmissionFormRequest as Contract;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FormSubmissionFormRequest extends FormRequest implements Contract

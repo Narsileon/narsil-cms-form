@@ -19,7 +19,6 @@ use Narsil\Cms\Form\Models\FieldsetElement;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FieldsetEditController extends RenderController

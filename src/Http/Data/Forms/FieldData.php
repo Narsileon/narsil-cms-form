@@ -13,7 +13,6 @@ use Narsil\Cms\Form\Models\Input;
 #endregionx
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FieldData extends BaseFieldData

@@ -9,7 +9,6 @@ use Narsil\Base\Http\Data\Forms\InputData;
 #endregionx
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  *
  * @property string $defaultValue The value of the "default value" attribute.

@@ -20,7 +20,6 @@ use Narsil\Cms\Form\Database\Factories\FormFactory;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 #[UseFactory(FormFactory::class)]

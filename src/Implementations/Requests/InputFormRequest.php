@@ -14,7 +14,6 @@ use Narsil\Cms\Form\Models\Input;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class InputFormRequest extends FormRequest implements Contract
