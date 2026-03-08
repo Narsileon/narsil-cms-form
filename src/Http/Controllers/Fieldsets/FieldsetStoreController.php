@@ -9,9 +9,9 @@ use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Form\Contracts\Actions\Fieldsets\SyncFieldsetElements;
 use Narsil\Cms\Form\Contracts\Requests\FieldsetFormRequest;
 use Narsil\Cms\Form\Models\Fieldset;
-use Narsil\Cms\Form\Services\FieldsetService;
 
 #endregion
 
@@ -33,7 +33,8 @@ class FieldsetStoreController extends RedirectController
 
         $fieldset = Fieldset::create($attributes);
 
-        FieldsetService::syncFieldsetElements($fieldset, Arr::get($attributes, Fieldset::RELATION_ELEMENTS, []));
+        app(SyncFieldsetElements::class)
+            ->run($fieldset, Arr::get($attributes, Fieldset::RELATION_ELEMENTS, []));
 
         return $this
             ->redirect(route('fieldsets.index'), $fieldset)

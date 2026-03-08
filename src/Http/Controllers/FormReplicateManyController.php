@@ -11,8 +11,8 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Http\Requests\ReplicateManyRequest;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Form\Contracts\Actions\Forms\ReplicateForm;
 use Narsil\Cms\Form\Models\Form;
-use Narsil\Cms\Form\Services\FormService;
 
 #endregion
 
@@ -39,7 +39,8 @@ class FormReplicateManyController extends RedirectController
 
         foreach ($forms as $form)
         {
-            FormService::replicate($form);
+            app(ReplicateForm::class)
+                ->run($form);
         }
 
         return back()

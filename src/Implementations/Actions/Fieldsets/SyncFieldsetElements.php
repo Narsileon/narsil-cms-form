@@ -1,50 +1,30 @@
 <?php
 
-namespace Narsil\Cms\Form\Services;
+namespace Narsil\Cms\Form\Implementations\Actions\Fieldsets;
 
 #region USE
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Narsil\Base\Services\DatabaseService;
+use Narsil\Base\Implementations\Action;
+use Narsil\Cms\Form\Contracts\Actions\Elements\SyncElementConditions;
+use Narsil\Cms\Form\Contracts\Actions\Fieldsets\SyncFieldsetElements as Contract;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\FieldsetElement;
-use Narsil\Cms\Services\ElementService;
 
 #endregion
 
 /**
  * @author Jonathan Rigaux
  */
-abstract class FieldsetService
+class SyncFieldsetElements extends Action implements Contract
 {
     #region PUBLIC METHODS
 
     /**
-     * @param Fieldset $fieldset
-     *
-     * @return void
+     * {@inheritDoc}
      */
-    public static function replicate(Fieldset $fieldset): void
-    {
-        $replicated = $fieldset->replicate();
-
-        $replicated
-            ->fill([
-                Fieldset::HANDLE => DatabaseService::generateUniqueValue($replicated, Fieldset::HANDLE, $fieldset->{Fieldset::HANDLE}),
-            ])
-            ->save();
-
-        static::syncFieldsetElements($replicated, $fieldset->elements()->get()->toArray());
-    }
-
-    /**
-     * @param Fieldset $fieldset
-     * @param array $elements
-     *
-     * @return void
-     */
-    public static function syncFieldsetElements(Fieldset $fieldset, array $elements): void
+    public function run(Fieldset $fieldset, array $elements): Fieldset
     {
         $uuids = [];
 
@@ -72,7 +52,8 @@ abstract class FieldsetService
                 FieldsetElement::WIDTH => Arr::get($element, FieldsetElement::WIDTH, 100),
             ]);
 
-            ElementService::syncConditions($fieldsetElement, Arr::get($element, FieldsetElement::RELATION_CONDITIONS, []));
+            app(SyncElementConditions::class)
+                ->run($fieldsetElement, Arr::get($element, FieldsetElement::RELATION_CONDITIONS, []));
 
             $uuids[] = $fieldsetElement->{FieldsetElement::UUID};
         }
@@ -81,6 +62,8 @@ abstract class FieldsetService
             ->elements()
             ->whereNotIn(FieldsetElement::UUID, $uuids)
             ->delete();
+
+        return $fieldset;
     }
 
     #endregion

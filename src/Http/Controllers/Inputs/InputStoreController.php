@@ -9,9 +9,10 @@ use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Fields\SyncFieldValidationRules;
+use Narsil\Cms\Form\Contracts\Actions\Inputs\SyncInputOptions;
 use Narsil\Cms\Form\Contracts\Requests\InputFormRequest;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Form\Services\InputService;
 
 #endregion
 
@@ -33,11 +34,11 @@ class InputStoreController extends RedirectController
 
         $input = Input::create($attributes);
 
-        $input
-            ->validation_rules()
-            ->sync(Arr::get($attributes, Input::RELATION_VALIDATION_RULES, []));
+        app(SyncInputOptions::class)
+            ->run($input, Arr::get($attributes, Input::RELATION_OPTIONS, []));
 
-        InputService::syncInputOptions($input, Arr::get($attributes, Input::RELATION_OPTIONS));
+        app(SyncFieldValidationRules::class)
+            ->run($input, Arr::get($attributes, Input::RELATION_VALIDATION_RULES, []));
 
         return $this
             ->redirect(route('inputs.index'), $input)

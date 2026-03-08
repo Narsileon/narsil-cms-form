@@ -10,8 +10,8 @@ use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Form\Contracts\Actions\Inputs\ReplicateInput;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Form\Services\InputService;
 
 #endregion
 
@@ -32,7 +32,8 @@ class InputReplicateController extends RedirectController
     {
         $this->authorize(AbilityEnum::CREATE, Input::class);
 
-        InputService::replicate($input);
+        app(ReplicateInput::class)
+            ->run($input);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Input::TABLE, ModelEventEnum::REPLICATED));

@@ -11,8 +11,8 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Http\Requests\ReplicateManyRequest;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Form\Contracts\Actions\Inputs\ReplicateInput;
 use Narsil\Cms\Form\Models\Input;
-use Narsil\Cms\Form\Services\InputService;
 
 #endregion
 
@@ -39,7 +39,8 @@ class InputReplicateManyController extends RedirectController
 
         foreach ($inputs as $input)
         {
-            InputService::replicate($input);
+            app(ReplicateInput::class)
+                ->run($input);
         }
 
         return back()

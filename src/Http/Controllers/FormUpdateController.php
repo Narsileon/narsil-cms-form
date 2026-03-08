@@ -9,9 +9,10 @@ use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Form\Contracts\Actions\Forms\SyncFormSteps;
+use Narsil\Cms\Form\Contracts\Actions\Forms\SyncFormWebhooks;
 use Narsil\Cms\Form\Contracts\Requests\FormFormRequest;
 use Narsil\Cms\Form\Models\Form;
-use Narsil\Cms\Form\Services\FormService;
 
 #endregion
 
@@ -34,8 +35,11 @@ class FormUpdateController extends RedirectController
 
         $form->update($attributes);
 
-        FormService::syncFormSteps($form, Arr::get($attributes, Form::RELATION_STEPS, []));
-        FormService::syncFormWebhooks($form, Arr::get($attributes, Form::RELATION_WEBHOOKS, []));
+        app(SyncFormSteps::class)
+            ->run($form, Arr::get($attributes, Form::RELATION_STEPS, []));
+
+        app(SyncFormWebhooks::class)
+            ->run($form, Arr::get($attributes, Form::RELATION_WEBHOOKS, []));
 
         return $this
             ->redirect(route('forms.index'))

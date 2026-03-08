@@ -10,8 +10,8 @@ use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Form\Contracts\Actions\Fieldsets\ReplicateFieldset;
 use Narsil\Cms\Form\Models\Fieldset;
-use Narsil\Cms\Form\Services\FieldsetService;
 
 #endregion
 
@@ -32,7 +32,8 @@ class FieldsetReplicateController extends RedirectController
     {
         $this->authorize(AbilityEnum::CREATE, Fieldset::class);
 
-        FieldsetService::replicate($fieldset);
+        app(ReplicateFieldset::class)
+            ->run($fieldset);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Fieldset::TABLE, ModelEventEnum::REPLICATED));

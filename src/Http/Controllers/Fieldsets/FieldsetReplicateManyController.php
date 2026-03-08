@@ -11,8 +11,8 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Http\Requests\ReplicateManyRequest;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Form\Contracts\Actions\Fieldsets\ReplicateFieldset;
 use Narsil\Cms\Form\Models\Fieldset;
-use Narsil\Cms\Form\Services\FieldsetService;
 
 #endregion
 
@@ -39,7 +39,8 @@ class FieldsetReplicateManyController extends RedirectController
 
         foreach ($fieldsets as $fieldset)
         {
-            FieldsetService::replicate($fieldset);
+            app(ReplicateFieldset::class)
+                ->run($fieldset);
         }
 
         return back()
