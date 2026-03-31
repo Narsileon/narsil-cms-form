@@ -10,7 +10,6 @@
   ],
   "license": "proprietary",
   "require": {
-    "php": "^8.4",
     "narsil/cms": "dev-main"
   },
   "autoload": {
