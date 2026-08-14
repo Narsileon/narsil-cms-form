@@ -47,13 +47,6 @@
       "@php artisan test"
     ]
   },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Narsil\\Cms\\Form\\ServiceProvider"
-      ]
-    }
-  },
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",

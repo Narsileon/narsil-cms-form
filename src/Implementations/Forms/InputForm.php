@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Form\Implementations\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Config;
 use Narsil\Base\Helpers\Translator;
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\FieldsetData;
@@ -15,6 +16,7 @@ use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Implementations\Form;
+use Narsil\Base\Narsil;
 use Narsil\Base\Services\FormService;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
@@ -58,7 +60,7 @@ class InputForm extends Form implements Contract
 
         if ($type)
         {
-            $concrete = Config::get("narsil.inputs.$type");
+            $concrete = app(Narsil::class)->inputs()[$type] ?? null;
 
             $settings = $concrete::getInputForm(Input::SETTINGS);
         }
@@ -92,9 +94,9 @@ class InputForm extends Form implements Contract
                     new FieldData(
                         id: Input::TYPE,
                         required: true,
-                        input: new SelectInputData(
+                        input: (new SelectInputData(
                             options: $typeOptions,
-                        )
+                        ))
                             ->reload('form'),
                     ),
                     ...($settings ? [
@@ -131,7 +133,7 @@ class InputForm extends Form implements Contract
     {
         $options = [];
 
-        foreach (Config::get('narsil.inputs', []) as $type => $input)
+        foreach (app(Narsil::class)->inputs() as $type => $input)
         {
             $label = Translator::trans("inputs.$type");
 
