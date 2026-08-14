@@ -5,6 +5,7 @@ namespace Narsil\Cms\Form\Models;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,6 +17,7 @@ use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Form\Database\Factories\FormFactory;
+use Narsil\Cms\Form\Policies\FormPolicy;
 
 #endregion
 
@@ -23,6 +25,7 @@ use Narsil\Cms\Form\Database\Factories\FormFactory;
  * @author Jonathan Rigaux
  */
 #[UseFactory(FormFactory::class)]
+#[UsePolicy(FormPolicy::class)]
 class Form extends Model implements Searchable
 {
     use AuditLoggable;

@@ -4,14 +4,17 @@ namespace Narsil\Cms\Form\Models;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Cms\Form\Observers\FormStepElementObserver;
 
 #endregion
 
 /**
  * @author Jonathan Rigaux
  */
+#[ObservedBy(FormStepElementObserver::class)]
 class FormStepElement extends Element
 {
     #region CONSTRUCTOR

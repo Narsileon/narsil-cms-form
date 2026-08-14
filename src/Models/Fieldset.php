@@ -5,11 +5,13 @@ namespace Narsil\Cms\Form\Models;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Narsil\Cms\Form\Database\Factories\FieldsetFactory;
+use Narsil\Cms\Form\Policies\FieldsetPolicy;
 
 #endregion
 
@@ -17,6 +19,7 @@ use Narsil\Cms\Form\Database\Factories\FieldsetFactory;
  * @author Jonathan Rigaux
  */
 #[UseFactory(FieldsetFactory::class)]
+#[UsePolicy(FieldsetPolicy::class)]
 class Fieldset extends BaseElement
 {
     use HasFactory;

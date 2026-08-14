@@ -4,14 +4,17 @@ namespace Narsil\Cms\Form\Models;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Cms\Form\Observers\FieldsetElementObserver;
 
 #endregion
 
 /**
  * @author Jonathan Rigaux
  */
+#[ObservedBy(FieldsetElementObserver::class)]
 class FieldsetElement extends Element
 {
     #region CONSTRUCTOR

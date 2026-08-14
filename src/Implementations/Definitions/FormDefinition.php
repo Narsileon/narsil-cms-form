@@ -6,26 +6,22 @@ namespace Narsil\Cms\Form\Implementations\Definitions;
 
 #region USE
 
-use Narsil\Base\Contracts\ModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum as Operation;
+use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Cms\Form\Contracts\Forms\FormForm;
 use Narsil\Cms\Form\Contracts\Actions\Forms\ReplicateForm;
 use Narsil\Cms\Form\Contracts\Requests\FormFormRequest;
 use Narsil\Cms\Form\Models\Form;
+use Narsil\Cms\Form\Implementations\Tables\FormTable;
+use Narsil\Cms\Form\Implementations\Hooks\Forms\SyncFormStepsHook;
+use Narsil\Cms\Form\Implementations\Hooks\Forms\SyncFormWebhooksHook;
 
 #endregion
 
-final class FormDefinition implements ModelDefinition
+final class FormDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    public function model(): string
-    {
-        return Form::class;
-    }
 
     /**
      * {@inheritDoc}
@@ -43,6 +39,20 @@ final class FormDefinition implements ModelDefinition
     public function form(): ?string
     {
         return FormForm::class;
+    }
+
+    public function hooks(): array
+    {
+        return [
+            ModelHookEventEnum::AFTER_STORE->value => [
+                ['hook' => SyncFormWebhooksHook::class, 'priority' => 0],
+                ['hook' => SyncFormStepsHook::class, 'priority' => 10],
+            ],
+            ModelHookEventEnum::AFTER_UPDATE->value => [
+                ['hook' => SyncFormWebhooksHook::class, 'priority' => 0],
+                ['hook' => SyncFormStepsHook::class, 'priority' => 10],
+            ],
+        ];
     }
 
     /**
@@ -70,6 +80,19 @@ final class FormDefinition implements ModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function model(): string
+    {
+        return Form::class;
+    }
+
+    public function morph(): ?string
+    {
+        return Form::TABLE;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function operations(): array
     {
         return [
@@ -88,14 +111,6 @@ final class FormDefinition implements ModelDefinition
     /**
      * {@inheritDoc}
      */
-    public function request(): ?string
-    {
-        return FormFormRequest::class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function replicateAction(): ?string
     {
         return ReplicateForm::class;
@@ -104,9 +119,22 @@ final class FormDefinition implements ModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function request(): ?string
+    {
+        return FormFormRequest::class;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function route(): string
     {
         return 'forms';
+    }
+
+    public function table(): ?string
+    {
+        return FormTable::class;
     }
 
     #endregion
