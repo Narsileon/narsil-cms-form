@@ -77,6 +77,43 @@ class ServiceProvider extends NarsilServiceProvider
             ->action(\Narsil\Cms\Form\Contracts\Actions\Forms\SyncFormStepElements::class, \Narsil\Cms\Form\Implementations\Actions\Forms\SyncFormStepElements::class)
             ->action(\Narsil\Cms\Form\Contracts\Actions\Forms\SyncFormSteps::class, \Narsil\Cms\Form\Implementations\Actions\Forms\SyncFormSteps::class)
             ->action(\Narsil\Cms\Form\Contracts\Actions\Forms\SyncFormWebhooks::class, \Narsil\Cms\Form\Implementations\Actions\Forms\SyncFormWebhooks::class)
+            ->modelHook(\Narsil\Cms\Form\Models\Form::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Form\Implementations\Hooks\Forms\SyncFormWebhooksHook::class)
+            ->modelHook(\Narsil\Cms\Form\Models\Form::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Form\Implementations\Hooks\Forms\SyncFormWebhooksHook::class)
+            ->modelHook(\Narsil\Cms\Form\Models\Form::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Form\Implementations\Hooks\Forms\SyncFormStepsHook::class, 10)
+            ->modelHook(\Narsil\Cms\Form\Models\Form::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Form\Implementations\Hooks\Forms\SyncFormStepsHook::class, 10)
+            ->modelDefinition(\Narsil\Cms\Form\Models\Form::class, \Narsil\Cms\Form\Implementations\Definitions\FormDefinition::class)
+            ->modelDefinition(\Narsil\Cms\Form\Models\Fieldset::class, \Narsil\Cms\Form\Implementations\Definitions\FieldsetDefinition::class)
+            ->modelDefinition(\Narsil\Cms\Form\Models\Input::class, \Narsil\Cms\Form\Implementations\Definitions\InputDefinition::class)
+            ->modelHook(\Narsil\Cms\Form\Models\Fieldset::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
+            {
+                if ($context->model instanceof \Narsil\Cms\Form\Models\Fieldset)
+                {
+                    app(\Narsil\Cms\Form\Contracts\Actions\Fieldsets\SyncFieldsetElements::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Form\Models\Fieldset::RELATION_ELEMENTS, []));
+                }
+            })
+            ->modelHook(\Narsil\Cms\Form\Models\Fieldset::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
+            {
+                if ($context->model instanceof \Narsil\Cms\Form\Models\Fieldset)
+                {
+                    app(\Narsil\Cms\Form\Contracts\Actions\Fieldsets\SyncFieldsetElements::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Form\Models\Fieldset::RELATION_ELEMENTS, []));
+                }
+            })
+            ->modelHook(\Narsil\Cms\Form\Models\Input::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
+            {
+                if ($context->model instanceof \Narsil\Cms\Form\Models\Input)
+                {
+                    app(\Narsil\Cms\Form\Contracts\Actions\Inputs\SyncInputOptions::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Form\Models\Input::RELATION_OPTIONS, []));
+                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldValidationRules::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Form\Models\Input::RELATION_VALIDATION_RULES, []));
+                }
+            })
+            ->modelHook(\Narsil\Cms\Form\Models\Input::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
+            {
+                if ($context->model instanceof \Narsil\Cms\Form\Models\Input)
+                {
+                    app(\Narsil\Cms\Form\Contracts\Actions\Inputs\SyncInputOptions::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Form\Models\Input::RELATION_OPTIONS, []));
+                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldValidationRules::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Form\Models\Input::RELATION_VALIDATION_RULES, []));
+                }
+            })
             ->action(\Narsil\Cms\Form\Contracts\Actions\Inputs\ReplicateInput::class, \Narsil\Cms\Form\Implementations\Actions\Inputs\ReplicateInput::class)
             ->action(\Narsil\Cms\Form\Contracts\Actions\Inputs\SyncInputOptions::class, \Narsil\Cms\Form\Implementations\Actions\Inputs\SyncInputOptions::class)
             ->action(\Narsil\Cms\Form\Contracts\Actions\Inputs\SyncInputValidationRules::class, \Narsil\Cms\Form\Implementations\Actions\Inputs\SyncInputValidationRules::class)
