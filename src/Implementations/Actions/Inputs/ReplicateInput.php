@@ -14,9 +14,6 @@ use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateInput extends Action implements Contract
 {
     #region PUBLIC METHODS

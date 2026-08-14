@@ -11,9 +11,6 @@ use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormStepData extends BaseFormStepData
 {
     #region PUBLIC METHODS

@@ -15,9 +15,6 @@ use Narsil\Cms\Form\Database\Factories\InputOptionFactory;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(InputOptionFactory::class)]
 class InputOption extends Model
 {

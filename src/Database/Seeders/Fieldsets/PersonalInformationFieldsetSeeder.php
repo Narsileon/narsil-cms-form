@@ -12,9 +12,6 @@ use Narsil\Cms\Form\Models\FieldsetElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class PersonalInformationFieldsetSeeder extends Seeder
 {
     #region CONSTANTS

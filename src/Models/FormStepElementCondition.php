@@ -9,9 +9,6 @@ use Narsil\Cms\Models\AbstractCondition;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormStepElementCondition extends AbstractCondition
 {
     #region CONSTRUCTOR

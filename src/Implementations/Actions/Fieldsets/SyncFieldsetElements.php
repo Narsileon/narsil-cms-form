@@ -14,9 +14,6 @@ use Narsil\Cms\Form\Models\FieldsetElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncFieldsetElements extends Action implements Contract
 {
     #region PUBLIC METHODS

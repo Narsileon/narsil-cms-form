@@ -10,9 +10,6 @@ use Narsil\Cms\Form\Models\FormStep;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormStepFactory extends Factory
 {
     #region PUBLIC METHODS

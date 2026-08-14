@@ -18,9 +18,6 @@ use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormSubmissionDataFormRequest extends FormRequest implements Contract
 {
     #region CONSTRUCTOR

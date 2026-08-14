@@ -13,9 +13,6 @@ use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class InputFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

@@ -14,9 +14,6 @@ use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldData extends BaseFieldData
 {
     #region PUBLIC METHODS

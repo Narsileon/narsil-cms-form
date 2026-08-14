@@ -9,9 +9,6 @@ use Narsil\Cms\Models\AbstractCondition;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldsetElementCondition extends AbstractCondition
 {
     #region CONSTRUCTOR

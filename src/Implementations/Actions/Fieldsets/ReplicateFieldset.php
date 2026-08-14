@@ -12,9 +12,6 @@ use Narsil\Cms\Form\Models\Fieldset;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateFieldset extends Action implements Contract
 {
     #region PUBLIC METHODS

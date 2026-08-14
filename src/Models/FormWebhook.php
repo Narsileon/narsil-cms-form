@@ -12,9 +12,6 @@ use Narsil\Base\Traits\Orderable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormWebhook extends Model
 {
     use HasDatetimes;

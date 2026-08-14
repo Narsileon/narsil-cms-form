@@ -17,9 +17,6 @@ use Narsil\Cms\Form\Database\Factories\FormStepFactory;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(FormStepFactory::class)]
 class FormStep extends Model
 {

@@ -15,9 +15,6 @@ use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldsetTable extends Table
 {
     #region CONSTRUCTOR

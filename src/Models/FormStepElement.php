@@ -11,9 +11,6 @@ use Narsil\Cms\Form\Observers\FormStepElementObserver;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[ObservedBy(FormStepElementObserver::class)]
 class FormStepElement extends Element
 {

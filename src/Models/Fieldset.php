@@ -15,9 +15,6 @@ use Narsil\Cms\Form\Policies\FieldsetPolicy;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(FieldsetFactory::class)]
 #[UsePolicy(FieldsetPolicy::class)]
 class Fieldset extends BaseElement

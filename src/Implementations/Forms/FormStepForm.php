@@ -13,9 +13,6 @@ use Narsil\Cms\Form\Models\FormStep;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormStepForm extends Form implements Contract
 {
     #region PROTECTED METHODS

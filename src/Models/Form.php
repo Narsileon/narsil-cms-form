@@ -21,9 +21,6 @@ use Narsil\Cms\Form\Policies\FormPolicy;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(FormFactory::class)]
 #[UsePolicy(FormPolicy::class)]
 class Form extends Model implements Searchable

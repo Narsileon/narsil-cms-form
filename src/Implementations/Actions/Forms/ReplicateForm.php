@@ -12,9 +12,6 @@ use Narsil\Cms\Form\Models\Form;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateForm extends Action implements Contract
 {
     #region PUBLIC METHODS

@@ -10,9 +10,6 @@ use Narsil\Cms\Form\Contracts\Requests\FormSubmissionFormRequest as Contract;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormSubmissionFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

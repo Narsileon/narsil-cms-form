@@ -15,9 +15,6 @@ use Narsil\Cms\Form\Models\FieldsetElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldsetElementForm extends Form implements Contract
 {
     #region PROTECTED METHODS

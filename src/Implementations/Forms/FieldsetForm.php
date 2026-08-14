@@ -21,9 +21,6 @@ use Narsil\Cms\Http\Data\Forms\Inputs\RelationsInputData;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldsetForm extends Form implements Contract
 {
     #region CONSTRUCTOR

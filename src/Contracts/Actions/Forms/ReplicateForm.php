@@ -9,9 +9,6 @@ use Narsil\Cms\Form\Models\Form;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface ReplicateForm extends Action
 {
     #region PUBLIC METHODS

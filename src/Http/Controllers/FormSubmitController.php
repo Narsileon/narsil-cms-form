@@ -20,9 +20,6 @@ use Narsil\Cms\Form\Models\FormWebhook;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormSubmitController extends RedirectController
 {
     #region PUBLIC METHODS

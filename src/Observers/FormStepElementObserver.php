@@ -10,9 +10,6 @@ use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormStepElementObserver
 {
     #region PUBLIC METHODS

@@ -9,9 +9,6 @@ use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncInputOptions extends Action
 {
     #region PUBLIC METHODS

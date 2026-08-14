@@ -11,9 +11,6 @@ use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormSubmission extends Model
 {
     use HasDatetimes;

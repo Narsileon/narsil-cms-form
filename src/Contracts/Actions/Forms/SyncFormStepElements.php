@@ -9,9 +9,6 @@ use Narsil\Cms\Form\Models\FormStep;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncFormStepElements extends Action
 {
     #region PUBLIC METHODS

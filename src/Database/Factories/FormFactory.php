@@ -10,9 +10,6 @@ use Narsil\Cms\Form\Models\Form;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormFactory extends Factory
 {
     #region PUBLIC METHODS

@@ -26,9 +26,6 @@ use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class InputForm extends Form implements Contract
 {
     #region CONSTRUCTOR

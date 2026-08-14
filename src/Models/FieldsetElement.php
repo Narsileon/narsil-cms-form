@@ -11,9 +11,6 @@ use Narsil\Cms\Form\Observers\FieldsetElementObserver;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[ObservedBy(FieldsetElementObserver::class)]
 class FieldsetElement extends Element
 {

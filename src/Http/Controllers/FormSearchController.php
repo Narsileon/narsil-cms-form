@@ -12,9 +12,6 @@ use Narsil\Cms\Form\Models\Form;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormSearchController extends RedirectController
 {
     #region PUBLIC METHODS

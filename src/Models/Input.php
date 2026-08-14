@@ -19,9 +19,6 @@ use Narsil\Cms\Traits\HasValidationRules;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(InputFactory::class)]
 #[UsePolicy(InputPolicy::class)]
 class Input extends BaseElement

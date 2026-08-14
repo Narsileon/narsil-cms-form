@@ -13,9 +13,6 @@ use Narsil\Cms\Form\Models\FormStepElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class ContactFormSeeder extends Seeder
 {
     #region CONSTANTS

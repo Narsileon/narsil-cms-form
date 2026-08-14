@@ -10,9 +10,6 @@ use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class MessageInputSeeder extends Seeder
 {
     #region PUBLIC METHODS

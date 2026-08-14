@@ -12,9 +12,6 @@ use Narsil\Cms\Form\Models\FormWebhook;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncFormWebhooks extends Action implements Contract
 {
     #region PUBLIC METHODS

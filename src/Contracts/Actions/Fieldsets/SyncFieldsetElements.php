@@ -9,9 +9,6 @@ use Narsil\Cms\Form\Models\Fieldset;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncFieldsetElements extends Action
 {
     #region PUBLIC METHODS

@@ -12,9 +12,6 @@ use Narsil\Cms\Form\Models\InputOption;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncInputOptions extends Action implements Contract
 {
     #region PUBLIC METHODS

@@ -10,9 +10,6 @@ use Narsil\Cms\Form\Models\Fieldset;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldsetFactory extends Factory
 {
     #region PUBLIC METHODS

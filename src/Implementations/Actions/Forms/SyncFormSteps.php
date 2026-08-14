@@ -13,9 +13,6 @@ use Narsil\Cms\Form\Models\FormStep;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncFormSteps extends Action implements Contract
 {
     #region PUBLIC METHODS

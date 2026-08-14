@@ -9,9 +9,6 @@ use Narsil\Cms\Form\Models\InputOption;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class InputOptionFactory extends Factory
 {
     #region PUBLIC METHODS
