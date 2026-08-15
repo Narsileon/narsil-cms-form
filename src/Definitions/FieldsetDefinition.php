@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Cms\Form\Implementations\Definitions;
+namespace Narsil\Cms\Form\Definitions;
 
 #region USE
 
-use Narsil\Base\Resources\AbstractModelDefinition;
+use Illuminate\Support\Arr;
+use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Base\Http\Data\ModelHookContext;
-use Illuminate\Support\Arr;
-use Narsil\Cms\Form\Contracts\Actions\Fieldsets\SyncFieldsetElements;
 use Narsil\Cms\Form\Contracts\Actions\Fieldsets\ReplicateFieldset;
+use Narsil\Cms\Form\Contracts\Actions\Fieldsets\SyncFieldsetElements;
 use Narsil\Cms\Form\Contracts\Forms\FieldsetForm;
 use Narsil\Cms\Form\Contracts\Requests\FieldsetFormRequest;
-use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Implementations\Tables\FieldsetTable;
+use Narsil\Cms\Form\Models\Fieldset;
 
 #endregion
 

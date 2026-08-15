@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Cms\Form\Implementations\Definitions;
+namespace Narsil\Cms\Form\Definitions;
 
 #region USE
 
-use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Base\Http\Data\ModelHookContext;
 use Illuminate\Support\Arr;

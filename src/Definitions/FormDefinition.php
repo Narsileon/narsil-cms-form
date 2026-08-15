@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Cms\Form\Implementations\Definitions;
+namespace Narsil\Cms\Form\Definitions;
 
 #region USE
 
-use Narsil\Base\Enums\ModelOperationEnum as Operation;
-use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelHookEventEnum;
-use Narsil\Cms\Form\Contracts\Forms\FormForm;
+use Narsil\Base\Enums\ModelOperationEnum;
 use Narsil\Cms\Form\Contracts\Actions\Forms\ReplicateForm;
+use Narsil\Cms\Form\Contracts\Forms\FormForm;
 use Narsil\Cms\Form\Contracts\Requests\FormFormRequest;
-use Narsil\Cms\Form\Models\Form;
-use Narsil\Cms\Form\Implementations\Tables\FormTable;
 use Narsil\Cms\Form\Implementations\Hooks\Forms\SyncFormStepsHook;
 use Narsil\Cms\Form\Implementations\Hooks\Forms\SyncFormWebhooksHook;
+use Narsil\Cms\Form\Implementations\Tables\FormTable;
+use Narsil\Cms\Form\Models\Form;
 
 #endregion
 
@@ -96,15 +96,15 @@ final class FormDefinition extends AbstractModelDefinition
     public function operations(): array
     {
         return [
-            Operation::CREATE,
-            Operation::DESTROY,
-            Operation::DESTROY_MANY,
-            Operation::EDIT,
-            Operation::INDEX,
-            Operation::REPLICATE,
-            Operation::REPLICATE_MANY,
-            Operation::STORE,
-            Operation::UPDATE,
+            ModelOperationEnum::CREATE,
+            ModelOperationEnum::DESTROY,
+            ModelOperationEnum::DESTROY_MANY,
+            ModelOperationEnum::EDIT,
+            ModelOperationEnum::INDEX,
+            ModelOperationEnum::REPLICATE,
+            ModelOperationEnum::REPLICATE_MANY,
+            ModelOperationEnum::STORE,
+            ModelOperationEnum::UPDATE,
         ];
     }
 
