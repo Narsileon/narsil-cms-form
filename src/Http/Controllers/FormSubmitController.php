@@ -7,6 +7,7 @@ namespace Narsil\Cms\Form\Http\Controllers;
 #region USE
 
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -29,9 +30,9 @@ class FormSubmitController extends RedirectController
     /**
      * @param Request $request
      *
-     * @return RedirectResponse
+     * @return JsonResponse|RedirectResponse
      */
-    public function __invoke(Request $request, Form $form): RedirectResponse
+    public function __invoke(Request $request, Form $form): JsonResponse|RedirectResponse
     {
         $attributes = $this->validateSubmission($request);
 
@@ -50,6 +51,14 @@ class FormSubmitController extends RedirectController
         if ($step === null || $step === count($form->{Form::RELATION_STEPS}) - 1)
         {
             $this->sendToWebhooks($form, $submission);
+        }
+
+        if ($request->expectsJson())
+        {
+            return response()->json([
+                'success' => true,
+                'uuid' => $submission->uuid,
+            ]);
         }
 
         return back()->with([
