@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Form\Http\Data\Forms;
 
 #region USE

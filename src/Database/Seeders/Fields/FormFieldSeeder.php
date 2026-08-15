@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Form\Database\Seeders\Fields;
 
 #region USE
