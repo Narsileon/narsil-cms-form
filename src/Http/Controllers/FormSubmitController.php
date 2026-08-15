@@ -35,7 +35,7 @@ class FormSubmitController extends RedirectController
     {
         $attributes = $this->validateSubmission($request);
 
-        $step = Arr::get($attributes, FormSubmissionFormRequest::STEP);
+        $step = (int) Arr::get($attributes, FormSubmissionFormRequest::STEP);
         $uuid = Arr::get($attributes, FormSubmissionFormRequest::UUID);
 
         $data = $this->validateSubmissionData($request, $form, $step);
