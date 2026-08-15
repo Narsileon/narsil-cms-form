@@ -10,11 +10,6 @@ use Narsil\Base\Contracts\Form;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- *
- * @see vendor/narsil/cms-form/src/ServiceProvider.php
- */
 interface FormStepElementForm extends Form
 {
     //

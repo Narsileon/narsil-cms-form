@@ -13,8 +13,6 @@ use Narsil\Cms\Form\Models\Input;
 #endregion
 
 /**
- * @author Jonathan Rigaux
- *
  * @property boolean $collapsible
  * @property boolean $virtual
  */
