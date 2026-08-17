@@ -37,7 +37,7 @@ class FieldData extends BaseFieldData
             description: $element->{Element::DESCRIPTION} ?? $base->{Input::DESCRIPTION},
             required: $element->{Element::REQUIRED},
             width: $element->{Element::WIDTH},
-            input: (new $input())
+            input: new $input()
                 ->options($base->{Input::RELATION_OPTIONS}),
         );
     }

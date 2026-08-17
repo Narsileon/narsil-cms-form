@@ -91,9 +91,9 @@ class InputForm extends Form implements Contract
                     new FieldData(
                         id: Input::TYPE,
                         required: true,
-                        input: (new SelectInputData(
+                        input: new SelectInputData(
                             options: $typeOptions,
-                        ))
+                        )
                             ->reload('form'),
                     ),
                     ...($settings ? [
