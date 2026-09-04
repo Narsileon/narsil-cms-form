@@ -24,16 +24,25 @@ final class InputDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
 
+    /**
+     * {@inheritDoc}
+     */
     public function editWith(): array
     {
         return [Input::RELATION_OPTIONS, Input::RELATION_VALIDATION_RULES];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function form(): ?string
     {
         return InputForm::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function hooks(): array
     {
         $hook = function (ModelHookContext $context): void
@@ -55,36 +64,57 @@ final class InputDefinition extends AbstractModelDefinition
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function indexWith(): array
     {
         return [Input::RELATION_OPTIONS, Input::RELATION_VALIDATION_RULES];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function model(): string
     {
         return Input::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function morph(): ?string
     {
         return Input::TABLE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function replicateAction(): ?string
     {
         return ReplicateInput::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function request(): ?string
     {
         return InputFormRequest::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function route(): string
     {
         return 'inputs';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function table(): ?string
     {
         return InputTable::class;

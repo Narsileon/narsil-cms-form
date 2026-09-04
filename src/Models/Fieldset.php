@@ -154,7 +154,6 @@ class Fieldset extends BaseElement
             ->using(FieldsetElement::class);
     }
 
-
     /**
      * Get the associated inputs.
      *

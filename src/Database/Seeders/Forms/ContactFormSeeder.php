@@ -35,7 +35,6 @@ final class ContactFormSeeder extends Seeder
 
     #endregion
 
-
     #region PUBLIC METHODS
 
     /**

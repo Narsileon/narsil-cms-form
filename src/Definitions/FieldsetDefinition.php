@@ -23,16 +23,25 @@ final class FieldsetDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
 
+    /**
+     * {@inheritDoc}
+     */
     public function editWith(): array
     {
         return [Fieldset::RELATION_ELEMENTS];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function form(): ?string
     {
         return FieldsetForm::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function hooks(): array
     {
         $hook = function (ModelHookContext $context): void
@@ -53,36 +62,57 @@ final class FieldsetDefinition extends AbstractModelDefinition
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function indexWith(): array
     {
         return [Fieldset::RELATION_ELEMENTS];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function model(): string
     {
         return Fieldset::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function morph(): ?string
     {
         return Fieldset::TABLE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function replicateAction(): ?string
     {
         return ReplicateFieldset::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function request(): ?string
     {
         return FieldsetFormRequest::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function route(): string
     {
         return 'fieldsets';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function table(): ?string
     {
         return FieldsetTable::class;

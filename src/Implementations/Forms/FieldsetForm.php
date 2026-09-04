@@ -41,6 +41,31 @@ class FieldsetForm extends Form implements Contract
 
     #region PROTECTED METHODS
 
+        /**
+     * Get the input options.
+     *
+     * @return OptionData[]
+     */
+    protected static function getInputOptions(): array
+    {
+        return Input::query()
+            ->orderBy(Input::LABEL)
+            ->get()
+            ->map(function (Input $input)
+            {
+                $option = new OptionData(
+                    label: $input->getTranslations(Input::LABEL),
+                    value: $input->{Input::HANDLE},
+                )
+                    ->icon($input->{Input::ATTRIBUTE_ICON})
+                    ->id($input->{Input::ID})
+                    ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER});
+
+                return $option;
+            })
+            ->toArray();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -80,31 +105,6 @@ class FieldsetForm extends Form implements Contract
                 ],
             ),
         ];
-    }
-
-    /**
-     * Get the input options.
-     *
-     * @return OptionData[]
-     */
-    protected static function getInputOptions(): array
-    {
-        return Input::query()
-            ->orderBy(Input::LABEL)
-            ->get()
-            ->map(function (Input $input)
-            {
-                $option = new OptionData(
-                    label: $input->getTranslations(Input::LABEL),
-                    value: $input->{Input::HANDLE},
-                )
-                    ->icon($input->{Input::ATTRIBUTE_ICON})
-                    ->id($input->{Input::ID})
-                    ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER});
-
-                return $option;
-            })
-            ->toArray();
     }
 
     #endregion

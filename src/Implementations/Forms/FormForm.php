@@ -45,6 +45,56 @@ class FormForm extends BaseForm implements Contract
 
     #region PROTECTED METHODS
 
+        /**
+     * Get the fieldset options.
+     *
+     * @return OptionData[]
+     */
+    protected static function getFieldsetOptions(): array
+    {
+        return Fieldset::query()
+            ->orderBy(Fieldset::LABEL)
+            ->get()
+            ->map(function (Fieldset $input)
+            {
+                $option = new OptionData(
+                    label: $input->getTranslations(Fieldset::LABEL),
+                    value: $input->{Fieldset::HANDLE},
+                )
+                    ->icon($input->{Fieldset::ATTRIBUTE_ICON})
+                    ->id($input->{Fieldset::ID})
+                    ->identifier($input->{Fieldset::ATTRIBUTE_IDENTIFIER});
+
+                return $option;
+            })
+            ->toArray();
+    }
+
+    /**
+     * Get the input options.
+     *
+     * @return OptionData[]
+     */
+    protected static function getInputOptions(): array
+    {
+        return Input::query()
+            ->orderBy(Input::LABEL)
+            ->get()
+            ->map(function (Input $input)
+            {
+                $option = new OptionData(
+                    label: $input->getTranslations(Input::LABEL),
+                    value: $input->{Input::HANDLE},
+                )
+                    ->icon($input->{Input::ATTRIBUTE_ICON})
+                    ->id($input->{Input::ID})
+                    ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER});
+
+                return $option;
+            })
+            ->toArray();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -111,55 +161,6 @@ class FormForm extends BaseForm implements Contract
                 ],
             ),
         ];
-    }
-
-    /**
-     * Get the fieldset options.
-     *
-     * @return OptionData[]
-     */
-    protected static function getFieldsetOptions(): array
-    {
-        return Fieldset::query()
-            ->orderBy(Fieldset::LABEL)
-            ->get()
-            ->map(function (Fieldset $input)
-            {
-                $option = new OptionData(
-                    label: $input->getTranslations(Fieldset::LABEL),
-                    value: $input->{Fieldset::HANDLE},
-                )
-                    ->icon($input->{Fieldset::ATTRIBUTE_ICON})
-                    ->id($input->{Fieldset::ID})
-                    ->identifier($input->{Fieldset::ATTRIBUTE_IDENTIFIER});
-
-                return $option;
-            })
-            ->toArray();
-    }
-    /**
-     * Get the input options.
-     *
-     * @return OptionData[]
-     */
-    protected static function getInputOptions(): array
-    {
-        return Input::query()
-            ->orderBy(Input::LABEL)
-            ->get()
-            ->map(function (Input $input)
-            {
-                $option = new OptionData(
-                    label: $input->getTranslations(Input::LABEL),
-                    value: $input->{Input::HANDLE},
-                )
-                    ->icon($input->{Input::ATTRIBUTE_ICON})
-                    ->id($input->{Input::ID})
-                    ->identifier($input->{Input::ATTRIBUTE_IDENTIFIER});
-
-                return $option;
-            })
-            ->toArray();
     }
 
     #endregion

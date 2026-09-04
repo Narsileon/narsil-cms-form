@@ -16,7 +16,7 @@ interface SyncInputValidationRules extends Action
     #region PUBLIC METHODS
 
     /**
-     * @param Input $input
+     * @param Input $field
      * @param integer[] $validationRules
      *
      * @return Input

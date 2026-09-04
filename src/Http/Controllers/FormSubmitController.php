@@ -29,6 +29,7 @@ class FormSubmitController extends RedirectController
 
     /**
      * @param Request $request
+     * @param Form $form
      *
      * @return JsonResponse|RedirectResponse
      */

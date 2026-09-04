@@ -41,6 +41,9 @@ final class FormDefinition extends AbstractModelDefinition
         return FormForm::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function hooks(): array
     {
         return [
@@ -85,6 +88,9 @@ final class FormDefinition extends AbstractModelDefinition
         return Form::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function morph(): ?string
     {
         return Form::TABLE;
@@ -132,6 +138,9 @@ final class FormDefinition extends AbstractModelDefinition
         return 'forms';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function table(): ?string
     {
         return FormTable::class;

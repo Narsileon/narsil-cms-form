@@ -44,6 +44,28 @@ class InputForm extends Form implements Contract
 
     #region PROTECTED METHODS
 
+        /**
+     * Get the type options.
+     *
+     * @return array<OptionData>
+     */
+    protected static function getTypeOptions(): array
+    {
+        $options = [];
+
+        foreach (app(Narsil::class)->inputs() as $type => $input)
+        {
+            $label = Translator::trans("inputs.$type");
+
+            $options[] = new OptionData(
+                value: $type,
+                label: $label,
+            );
+        }
+
+        return $options;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -119,28 +141,6 @@ class InputForm extends Form implements Contract
                 ],
             ),
         ];
-    }
-
-    /**
-     * Get the type options.
-     *
-     * @return array<OptionData>
-     */
-    protected static function getTypeOptions(): array
-    {
-        $options = [];
-
-        foreach (app(Narsil::class)->inputs() as $type => $input)
-        {
-            $label = Translator::trans("inputs.$type");
-
-            $options[] = new OptionData(
-                value: $type,
-                label: $label,
-            );
-        }
-
-        return $options;
     }
 
     #endregion
