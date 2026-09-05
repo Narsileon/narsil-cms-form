@@ -29,6 +29,7 @@ final class FormDefinition extends AbstractModelDefinition
     public function editWith(): array
     {
         return [
+            Form::RELATION_STEPS,
             Form::RELATION_WEBHOOKS,
         ];
     }
@@ -75,7 +76,7 @@ final class FormDefinition extends AbstractModelDefinition
     public function indexWithCount(): array
     {
         return [
-            Form::RELATION_STEPS,
+            Form::RELATION_STEPS . ' as ' . Form::COUNT_TABS,
             Form::RELATION_WEBHOOKS,
         ];
     }

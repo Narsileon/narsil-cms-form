@@ -69,7 +69,20 @@ final class InputDefinition extends AbstractModelDefinition
      */
     public function indexWith(): array
     {
-        return [Input::RELATION_OPTIONS, Input::RELATION_VALIDATION_RULES];
+        return [
+            Input::RELATION_OPTIONS,
+            Input::RELATION_VALIDATION_RULES
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function indexWithCount(): array
+    {
+        return [
+            Input::RELATION_VALIDATION_RULES
+        ];
     }
 
     /**

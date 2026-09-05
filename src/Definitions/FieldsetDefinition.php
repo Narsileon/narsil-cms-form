@@ -28,7 +28,11 @@ final class FieldsetDefinition extends AbstractModelDefinition
      */
     public function editWith(): array
     {
-        return [Fieldset::RELATION_ELEMENTS];
+        return [
+            Fieldset::RELATION_ELEMENTS,
+            Fieldset::RELATION_FIELDSETS,
+            Fieldset::RELATION_INPUTS
+        ];
     }
 
     /**
@@ -67,7 +71,15 @@ final class FieldsetDefinition extends AbstractModelDefinition
      */
     public function indexWith(): array
     {
-        return [Fieldset::RELATION_ELEMENTS];
+        return [Fieldset::RELATION_ELEMENTS, Fieldset::RELATION_FIELDSETS, Fieldset::RELATION_INPUTS];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function indexWithCount(): array
+    {
+        return [Fieldset::RELATION_FIELDSETS, Fieldset::RELATION_INPUTS];
     }
 
     /**
