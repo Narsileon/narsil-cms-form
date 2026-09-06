@@ -58,10 +58,16 @@ final class FieldsetDefinition extends AbstractModelDefinition
 
         return [
             ModelHookEventEnum::AFTER_STORE->value => [
-                ['hook' => $hook, 'priority' => 0],
+                [
+                    'hook' => $hook,
+                    'priority' => 0
+                ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
-                ['hook' => $hook, 'priority' => 0],
+                [
+                    'hook' => $hook,
+                    'priority' => 0
+                ],
             ],
         ];
     }
