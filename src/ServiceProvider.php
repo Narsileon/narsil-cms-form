@@ -85,7 +85,7 @@ class ServiceProvider extends NarsilServiceProvider
                     new MenuItem(Form::TABLE)
                         ->before(Template::TABLE)
                         ->group($group)
-                        ->icon('form')
+                        ->icon('fa-solid-clipboard-list')
                         ->label(ModelService::getTableLabel(Form::TABLE))
                         ->permissions([
                             PermissionService::getName(Form::TABLE, AbilityEnum::VIEW_ANY)
@@ -95,7 +95,7 @@ class ServiceProvider extends NarsilServiceProvider
                 ->add(
                     new MenuItem(Fieldset::TABLE)
                         ->group($group)
-                        ->icon('fieldset')
+                        ->icon('fa-solid-list-squares')
                         ->label(ModelService::getTableLabel(Fieldset::TABLE))
                         ->permissions([
                             PermissionService::getName(Fieldset::TABLE, AbilityEnum::VIEW_ANY)
@@ -105,7 +105,7 @@ class ServiceProvider extends NarsilServiceProvider
                 ->add(
                     new MenuItem(Input::TABLE)
                         ->group($group)
-                        ->icon('input')
+                        ->icon('fa-solid-square-pen')
                         ->label(ModelService::getTableLabel(Input::TABLE))
                         ->permissions([
                             PermissionService::getName(Input::TABLE, AbilityEnum::VIEW_ANY)
@@ -155,6 +155,7 @@ class ServiceProvider extends NarsilServiceProvider
             ->input(\Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData::TYPE, \Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData::class)
             ->input(\Narsil\Base\Http\Data\Forms\Inputs\EmailInputData::TYPE, \Narsil\Base\Http\Data\Forms\Inputs\EmailInputData::class)
             ->input(\Narsil\Base\Http\Data\Forms\Inputs\FileInputData::TYPE, \Narsil\Base\Http\Data\Forms\Inputs\FileInputData::class)
+            ->input(\Narsil\Base\Http\Data\Forms\Inputs\IconInputData::TYPE, \Narsil\Base\Http\Data\Forms\Inputs\IconInputData::class)
             ->input(\Narsil\Base\Http\Data\Forms\Inputs\NumberInputData::TYPE, \Narsil\Base\Http\Data\Forms\Inputs\NumberInputData::class)
             ->input(\Narsil\Base\Http\Data\Forms\Inputs\PasswordInputData::TYPE, \Narsil\Base\Http\Data\Forms\Inputs\PasswordInputData::class)
             ->input(\Narsil\Base\Http\Data\Forms\Inputs\RangeInputData::TYPE, \Narsil\Base\Http\Data\Forms\Inputs\RangeInputData::class)

@@ -190,7 +190,7 @@ class Fieldset extends BaseElement
         return Attribute::make(
             get: function ()
             {
-                return 'fieldset';
+                return 'fa-solid-list-squares';
             },
         );
     }
