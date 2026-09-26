@@ -89,7 +89,7 @@ class InputForm extends Form implements Contract
         return [
             new FormStepData(
                 id: 'definition',
-                label: trans('narsil-cms::ui.definition'),
+                label: trans('narsil::ui.definition'),
                 elements: [
                     new FieldData(
                         id: Input::HANDLE,
@@ -121,7 +121,7 @@ class InputForm extends Form implements Contract
                     ...($settings ? [
                         new FieldsetData(
                             id: Input::SETTINGS,
-                            label: trans('narsil-cms::ui.settings'),
+                            label: trans('narsil::ui.settings'),
                             elements: $settings,
                         ),
                     ] : []),
