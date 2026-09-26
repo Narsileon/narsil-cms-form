@@ -10,13 +10,9 @@ use Narsil\Cms\Form\Models\Input;
 #endregion
 
 return [
-    Fieldset::TABLE => [
-        Fieldset::HANDLE => 'Der Standard-Handle. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die diese Feldgruppe implementieren.',
-        Fieldset::LABEL => 'Die Standardbezeichnung. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die diese Feldgruppe implementieren.',
-    ],
-    Input::TABLE => [
-        Input::DESCRIPTION => 'Die Standardbeschreibung. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die dieses Eingabefeld implementieren.',
-        Input::HANDLE => 'Der Standard-Handle. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die dieses Eingabefeld implementieren.',
-        Input::LABEL => 'Die Standardbezeichnung. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die dieses Eingabefeld implementieren.',
-    ],
+    Fieldset::TABLE . '.' . Fieldset::HANDLE => 'Der Standard-Handle. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die diese Feldgruppe implementieren.',
+    Fieldset::TABLE . '.' . Fieldset::LABEL => 'Die Standardbezeichnung. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die diese Feldgruppe implementieren.',
+    Input::TABLE . '.' . Input::DESCRIPTION => 'Die Standardbeschreibung. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die dieses Eingabefeld implementieren.',
+    Input::TABLE . '.' . Input::HANDLE => 'Der Standard-Handle. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die dieses Eingabefeld implementieren.',
+    Input::TABLE . '.' . Input::LABEL => 'Die Standardbezeichnung. Der Wert kann von Formularen und Feldgruppen überschrieben werden, die dieses Eingabefeld implementieren.',
 ];
