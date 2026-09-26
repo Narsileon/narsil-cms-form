@@ -72,7 +72,7 @@ class Input extends BaseElement
      *
      * @var string
      */
-    final public const TABLE = 'inputs';
+    final public const TABLE = 'cms.inputs';
 
     #region • COLUMNS
 

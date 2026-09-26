@@ -46,8 +46,6 @@ class FormForm extends BaseForm implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Get the fieldset options.
-     *
      * @return OptionData[]
      */
     protected static function getFieldsetOptions(): array
@@ -71,8 +69,6 @@ class FormForm extends BaseForm implements Contract
     }
 
     /**
-     * Get the input options.
-     *
      * @return OptionData[]
      */
     protected static function getInputOptions(): array

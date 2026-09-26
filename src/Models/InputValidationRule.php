@@ -40,7 +40,7 @@ class InputValidationRule extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'input_validation_rule';
+    final public const TABLE = 'cms.input_validation_rule';
 
     #region • COLUMNS
 

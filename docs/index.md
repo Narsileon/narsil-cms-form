@@ -4,5 +4,5 @@ Documentation for Narsil CMS Form.
 
 ## Repository
 
-- [Pint](pint.md)
+- [Commands](commands/index.md)
 - [Structure](structure.md)

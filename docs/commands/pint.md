@@ -1,8 +1,10 @@
 # Pint
 
-Run from the `narsil-app` root using Narsil Skills' shared Pint configuration.
+Check and format Narsil CMS Form PHP files from the `narsil-app` DDEV container using the shared Pint configuration.
 
 ## Check
+
+Check PHP formatting:
 
 ```sh
 ddev exec -d /var/www/html ./vendor/bin/pint --test \
@@ -10,7 +12,9 @@ ddev exec -d /var/www/html ./vendor/bin/pint --test \
     /var/www/narsil-cms-form
 ```
 
-## Format
+## Fix
+
+Format PHP files:
 
 ```sh
 ddev exec -d /var/www/html ./vendor/bin/pint \

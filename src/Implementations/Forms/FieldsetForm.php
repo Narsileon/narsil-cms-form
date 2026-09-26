@@ -42,8 +42,6 @@ class FieldsetForm extends Form implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Get the input options.
-     *
      * @return OptionData[]
      */
     protected static function getInputOptions(): array

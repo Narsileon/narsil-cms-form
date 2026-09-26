@@ -62,7 +62,7 @@ class Fieldset extends BaseElement
      *
      * @var string
      */
-    final public const TABLE = 'fieldsets';
+    final public const TABLE = 'cms.fieldsets';
 
     #region • COUNTS
 

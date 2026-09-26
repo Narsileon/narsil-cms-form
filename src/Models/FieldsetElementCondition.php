@@ -34,7 +34,7 @@ class FieldsetElementCondition extends AbstractCondition
      *
      * @var string
      */
-    final public const TABLE = 'fieldset_element_conditions';
+    final public const TABLE = 'cms.fieldset_element_conditions';
 
     #region • COLUMNS
 

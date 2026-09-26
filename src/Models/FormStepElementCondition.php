@@ -34,7 +34,7 @@ class FormStepElementCondition extends AbstractCondition
      *
      * @var string
      */
-    final public const TABLE = 'form_step_element_conditions';
+    final public const TABLE = 'cms.form_step_element_conditions';
 
     #region • COLUMNS
 

@@ -9,7 +9,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Base\Models\User;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\FieldsetElement;
 use Narsil\Cms\Form\Models\FieldsetElementCondition;
@@ -19,47 +18,35 @@ use Narsil\Cms\Form\Models\Input;
 
 return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
     {
-        foreach ($this->getSchemas() as $schema)
+        if (!Schema::hasTable(Fieldset::TABLE))
         {
-            if (!Schema::hasTable("$schema." . Fieldset::TABLE))
-            {
-                $this->createFieldsetsTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . FieldsetElement::TABLE))
-            {
-                $this->createFieldsetElementTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . FieldsetElementCondition::TABLE))
-            {
-                $this->createFieldsetElementConditionsTable($schema);
-            }
+            $this->createFieldsetsTable();
+        }
+        if (!Schema::hasTable(FieldsetElement::TABLE))
+        {
+            $this->createFieldsetElementTable();
+        }
+        if (!Schema::hasTable(FieldsetElementCondition::TABLE))
+        {
+            $this->createFieldsetElementConditionsTable();
         }
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
     {
-        foreach ($this->getSchemas() as $schema)
-        {
-            Schema::dropIfExists("$schema." . FieldsetElementCondition::TABLE);
-            Schema::dropIfExists("$schema." . FieldsetElement::TABLE);
-            Schema::dropIfExists("$schema." . Fieldset::TABLE);
-        }
+        Schema::dropIfExists(FieldsetElementCondition::TABLE);
+        Schema::dropIfExists(FieldsetElement::TABLE);
+        Schema::dropIfExists(Fieldset::TABLE);
     }
 
     #endregion
@@ -67,22 +54,18 @@ return new class() extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the fieldset element conditions table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createFieldsetElementConditionsTable(string $schema): void
+    private function createFieldsetElementConditionsTable(): void
     {
-        Schema::create("$schema." . FieldsetElementCondition::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(FieldsetElementCondition::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(FieldsetElementCondition::UUID)
                 ->primary();
             $blueprint
                 ->foreignUuid(FieldsetElementCondition::FIELDSET_ELEMENT_UUID)
-                ->constrained("$schema." . FieldsetElement::TABLE, FieldsetElement::UUID)
+                ->constrained(FieldsetElement::TABLE, FieldsetElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(FieldsetElementCondition::POSITION)
@@ -99,34 +82,30 @@ return new class() extends Migration
     }
 
     /**
-     * Create the form fieldset elements table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createFieldsetElementTable(string $schema): void
+    private function createFieldsetElementTable(): void
     {
-        Schema::create("$schema." . FieldsetElement::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(FieldsetElement::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(FieldsetElement::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(FieldsetElement::OWNER_ID)
-                ->constrained("$schema." . Fieldset::TABLE, Fieldset::ID)
+                ->constrained(Fieldset::TABLE, Fieldset::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->morphs(FieldsetElement::RELATION_BASE);
             $blueprint
                 ->foreignId(FieldsetElement::FIELDSET_ID)
                 ->nullable()
-                ->constrained("$schema." . Fieldset::TABLE, Fieldset::ID)
+                ->constrained(Fieldset::TABLE, Fieldset::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(FieldsetElement::INPUT_ID)
                 ->nullable()
-                ->constrained("$schema." . Input::TABLE, Input::ID)
+                ->constrained(Input::TABLE, Input::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(FieldsetElement::HANDLE);
@@ -149,15 +128,11 @@ return new class() extends Migration
     }
 
     /**
-     * Create the form fieldsets table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createFieldsetsTable(string $schema): void
+    private function createFieldsetsTable(): void
     {
-        Schema::create("$schema." . Fieldset::TABLE, function (Blueprint $blueprint)
+        Schema::create(Fieldset::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Fieldset::ID);

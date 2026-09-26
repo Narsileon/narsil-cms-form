@@ -43,29 +43,21 @@ class FormInputData extends InputData
     #region CONSTANTS
 
     /**
-     * The name of the "initial options" attribute.
-     *
      * @var string
      */
     final public const INITIAL_OPTIONS = 'initialOptions';
 
     /**
-     * The name of the "label path" attribute.
-     *
      * @var string
      */
     final public const LABEL_PATH = 'labelPath';
 
     /**
-     * The name of the "value path" attribute.
-     *
      * @var string
      */
     final public const VALUE_PATH = 'valuePath';
 
     /**
-     * The name of the "type" attribute.
-     *
      * @var string
      */
     final public const TYPE = 'form';

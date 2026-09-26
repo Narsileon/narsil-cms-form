@@ -47,7 +47,7 @@ class FormWebhook extends Model
      *
      * @var string
      */
-    final public const TABLE = 'form_webhooks';
+    final public const TABLE = 'cms.form_webhooks';
 
     #region • COLUMNS
 

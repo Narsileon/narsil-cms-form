@@ -45,7 +45,7 @@ class FormSubmission extends Model
      *
      * @var string
      */
-    final public const TABLE = 'form_submissions';
+    final public const TABLE = 'cms.form_submissions';
 
     #region • COLUMNS
 

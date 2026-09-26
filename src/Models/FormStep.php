@@ -61,7 +61,7 @@ class FormStep extends Model
      *
      * @var string
      */
-    final public const TABLE = 'form_steps';
+    final public const TABLE = 'cms.form_steps';
 
     #region • COLUMNS
 

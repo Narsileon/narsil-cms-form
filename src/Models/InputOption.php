@@ -50,7 +50,7 @@ class InputOption extends Model
      *
      * @var string
      */
-    final public const TABLE = 'input_options';
+    final public const TABLE = 'cms.input_options';
 
     #region • COLUMNS
 

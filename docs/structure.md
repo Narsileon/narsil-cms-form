@@ -7,6 +7,12 @@ CMS Form extends CMS with form-builder and frontend forms.
 ├── database/  # Database files
 │   └── migrations/  # Database migrations
 ├── docs/  # Documentation
+│   ├── commands/  # Command documentation
+│   │   ├── index.md  # Command index
+│   │   ├── narsil-skills.md  # Narsil Skills check and fix commands
+│   │   └── pint.md  # PHP formatting commands
+│   ├── index.md  # Documentation index
+│   └── structure.md  # Root structure reference
 ├── lang/  # Translations
 │   ├── de/  # German translations
 │   ├── en/  # English translations

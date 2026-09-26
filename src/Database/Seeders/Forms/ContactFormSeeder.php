@@ -20,15 +20,11 @@ final class ContactFormSeeder extends Seeder
     #region CONSTANTS
 
     /**
-     * The name of the "message" input.
-     *
      * @var string
      */
     public const MESSAGE = 'message';
 
     /**
-     * The name of the "personal information" fieldset.
-     *
      * @var string
      */
     public const PERSONAL_INFORMATION = 'personal_information';

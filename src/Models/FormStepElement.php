@@ -58,7 +58,7 @@ class FormStepElement extends Element
      *
      * @var string
      */
-    final public const TABLE = 'form_step_element';
+    final public const TABLE = 'cms.form_step_element';
 
     #region • COLUMNS
 

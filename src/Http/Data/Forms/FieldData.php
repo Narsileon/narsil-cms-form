@@ -19,8 +19,6 @@ class FieldData extends BaseFieldData
     #region PUBLIC METHODS
 
     /**
-     * Get the field data of an element.
-     *
      * @param Element $element
      *
      * @return FieldData

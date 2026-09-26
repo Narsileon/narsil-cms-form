@@ -58,7 +58,7 @@ class FieldsetElement extends Element
      *
      * @var string
      */
-    final public const TABLE = 'fieldset_element';
+    final public const TABLE = 'cms.fieldset_element';
 
     #region • COLUMNS
 

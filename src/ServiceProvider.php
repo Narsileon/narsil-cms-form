@@ -6,6 +6,7 @@ namespace Narsil\Cms\Form;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Data\Forms\Inputs\CheckboxInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\DateInputData;
@@ -68,8 +69,6 @@ class ServiceProvider extends NarsilServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * Boot any application services.
-     *
      * @return void
      */
     public function boot(): void
@@ -100,8 +99,6 @@ class ServiceProvider extends NarsilServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the migrations.
-     *
      * @return void
      */
     protected function bootMigrations(): void
@@ -112,8 +109,6 @@ class ServiceProvider extends NarsilServiceProvider
     }
 
     /**
-     * Boot the sidebar.
-     *
      * @return void
      */
     protected function bootSidebar(): void
@@ -124,8 +119,8 @@ class ServiceProvider extends NarsilServiceProvider
 
             $menu
                 ->add(
-                    new MenuItem(Form::TABLE)
-                        ->before(Template::TABLE)
+                    new MenuItem(Str::afterLast(Form::TABLE, '.'))
+                        ->before(Str::afterLast(Template::TABLE, '.'))
                         ->group($group)
                         ->icon('fa-solid-clipboard-list')
                         ->label(ModelService::getTableLabel(Form::TABLE))
@@ -135,7 +130,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->route('forms.index')
                 )
                 ->add(
-                    new MenuItem(Fieldset::TABLE)
+                    new MenuItem(Str::afterLast(Fieldset::TABLE, '.'))
                         ->group($group)
                         ->icon('fa-solid-list-squares')
                         ->label(ModelService::getTableLabel(Fieldset::TABLE))
@@ -145,7 +140,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->route('fieldsets.index')
                 )
                 ->add(
-                    new MenuItem(Input::TABLE)
+                    new MenuItem(Str::afterLast(Input::TABLE, '.'))
                         ->group($group)
                         ->icon('fa-solid-square-pen')
                         ->label(ModelService::getTableLabel(Input::TABLE))
@@ -158,8 +153,6 @@ class ServiceProvider extends NarsilServiceProvider
     }
 
     /**
-     * Register the package defaults.
-     *
      * @return void
      */
     protected function registerDefaults(): void

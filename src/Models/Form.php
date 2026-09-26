@@ -63,7 +63,7 @@ class Form extends Model implements Searchable
      *
      * @var string
      */
-    final public const TABLE = 'forms';
+    final public const TABLE = 'cms.forms';
 
     #region • COLUMNS
 

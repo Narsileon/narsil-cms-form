@@ -9,7 +9,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Base\Models\User;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Form\Models\Fieldset;
 use Narsil\Cms\Form\Models\FieldsetElement;
 use Narsil\Cms\Form\Models\FieldsetElementCondition;
@@ -25,62 +24,50 @@ use Narsil\Cms\Form\Models\Input;
 
 return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
     {
-        foreach ($this->getSchemas() as $schema)
+        if (!Schema::hasTable(Form::TABLE))
         {
-            if (!Schema::hasTable("$schema." . Form::TABLE))
-            {
-                $this->createFormsTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . FormStep::TABLE))
-            {
-                $this->createFormStepsTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . FormStepElement::TABLE))
-            {
-                $this->createFormStepElementTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . FormStepElementCondition::TABLE))
-            {
-                $this->createFormStepElementConditionsTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . FormSubmission::TABLE))
-            {
-                $this->createFormSubmissionsTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . FormWebhook::TABLE))
-            {
-                $this->createFormWebhooksTable($schema);
-            }
+            $this->createFormsTable();
+        }
+        if (!Schema::hasTable(FormStep::TABLE))
+        {
+            $this->createFormStepsTable();
+        }
+        if (!Schema::hasTable(FormStepElement::TABLE))
+        {
+            $this->createFormStepElementTable();
+        }
+        if (!Schema::hasTable(FormStepElementCondition::TABLE))
+        {
+            $this->createFormStepElementConditionsTable();
+        }
+        if (!Schema::hasTable(FormSubmission::TABLE))
+        {
+            $this->createFormSubmissionsTable();
+        }
+        if (!Schema::hasTable(FormWebhook::TABLE))
+        {
+            $this->createFormWebhooksTable();
         }
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
     {
-        foreach ($this->getSchemas() as $schema)
-        {
-            Schema::dropIfExists("$schema." . FormWebhook::TABLE);
-            Schema::dropIfExists("$schema." . FormSubmission::TABLE);
-            Schema::dropIfExists("$schema." . FormStepElementCondition::TABLE);
-            Schema::dropIfExists("$schema." . FormStepElement::TABLE);
-            Schema::dropIfExists("$schema." . FormStep::TABLE);
-            Schema::dropIfExists("$schema." . Form::TABLE);
-        }
+        Schema::dropIfExists(FormWebhook::TABLE);
+        Schema::dropIfExists(FormSubmission::TABLE);
+        Schema::dropIfExists(FormStepElementCondition::TABLE);
+        Schema::dropIfExists(FormStepElement::TABLE);
+        Schema::dropIfExists(FormStep::TABLE);
+        Schema::dropIfExists(Form::TABLE);
     }
 
     #endregion
@@ -88,22 +75,18 @@ return new class() extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the form submissions table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createFormSubmissionsTable(string $schema): void
+    private function createFormSubmissionsTable(): void
     {
-        Schema::create("$schema." . FormSubmission::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(FormSubmission::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(FormSubmission::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(FormSubmission::FORM_ID)
-                ->constrained("$schema." . Form::TABLE, Form::ID)
+                ->constrained(Form::TABLE, Form::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->json(FormSubmission::DATA);
@@ -113,22 +96,18 @@ return new class() extends Migration
     }
 
     /**
-     * Create the form step element conditions table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createFormStepElementConditionsTable(string $schema): void
+    private function createFormStepElementConditionsTable(): void
     {
-        Schema::create("$schema." . FormStepElementCondition::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(FormStepElementCondition::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(FormStepElementCondition::UUID)
                 ->primary();
             $blueprint
                 ->foreignUuid(FormStepElementCondition::FORM_STEP_ELEMENT_UUID)
-                ->constrained("$schema." . FormStepElement::TABLE, FormStepElement::UUID)
+                ->constrained(FormStepElement::TABLE, FormStepElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(FieldsetElementCondition::POSITION)
@@ -145,34 +124,30 @@ return new class() extends Migration
     }
 
     /**
-     * Create the form step elements table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createFormStepElementTable(string $schema): void
+    private function createFormStepElementTable(): void
     {
-        Schema::create("$schema." . FormStepElement::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(FormStepElement::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(FormStepElement::UUID)
                 ->primary();
             $blueprint
                 ->foreignUuid(FormStepElement::OWNER_UUID)
-                ->constrained("$schema." . FormStep::TABLE, FormStep::UUID)
+                ->constrained(FormStep::TABLE, FormStep::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->morphs(FormStepElement::RELATION_BASE);
             $blueprint
                 ->foreignId(FieldsetElement::FIELDSET_ID)
                 ->nullable()
-                ->constrained("$schema." . Fieldset::TABLE, Fieldset::ID)
+                ->constrained(Fieldset::TABLE, Fieldset::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(FieldsetElement::INPUT_ID)
                 ->nullable()
-                ->constrained("$schema." . Input::TABLE, Input::ID)
+                ->constrained(Input::TABLE, Input::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(FormStepElement::HANDLE);
@@ -195,22 +170,18 @@ return new class() extends Migration
     }
 
     /**
-     * Create the form steps table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createFormStepsTable(string $schema): void
+    private function createFormStepsTable(): void
     {
-        Schema::create("$schema." . FormStep::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(FormStep::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(FormStep::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(FormStep::FORM_ID)
-                ->constrained("$schema." . Form::TABLE, Form::ID)
+                ->constrained(Form::TABLE, Form::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(FormStep::HANDLE);
@@ -229,15 +200,11 @@ return new class() extends Migration
     }
 
     /**
-     * Create the forms table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createFormsTable(string $schema): void
+    private function createFormsTable(): void
     {
-        Schema::create("$schema." . Form::TABLE, function (Blueprint $blueprint)
+        Schema::create(Form::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Form::ID);
@@ -263,22 +230,18 @@ return new class() extends Migration
     }
 
     /**
-     * Create the form webhooks table.
-     *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createFormWebhooksTable(string $schema): void
+    private function createFormWebhooksTable(): void
     {
-        Schema::create("$schema." . FormWebhook::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(FormWebhook::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(FormWebhook::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(FormWebhook::FORM_ID)
-                ->constrained("$schema." . Form::TABLE, Form::ID)
+                ->constrained(Form::TABLE, Form::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(FormWebhook::POSITION)

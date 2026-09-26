@@ -23,8 +23,6 @@ class FieldsetData extends BaseFieldsetData
     #region PUBLIC METHODS
 
     /**
-     * Get the fieldset data of an element.
-     *
      * @param Element $element
      *
      * @return FieldsetData
