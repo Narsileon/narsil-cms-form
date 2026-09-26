@@ -134,8 +134,6 @@ class FormStep extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated elements.
-     *
      * @return HasMany
      */
     final public function elements(): HasMany
@@ -150,8 +148,6 @@ class FormStep extends Model
     }
 
     /**
-     * Get the associated fieldsets.
-     *
      * @return MorphToMany
      */
     final public function fieldsets(): MorphToMany
@@ -168,8 +164,6 @@ class FormStep extends Model
     }
 
     /**
-     * Get the associated inputs.
-     *
      * @return MorphToMany
      */
     final public function inputs(): MorphToMany
@@ -186,8 +180,6 @@ class FormStep extends Model
     }
 
     /**
-     * Get the associated form.
-     *
      * @return BelongsTo
      */
     final public function form(): BelongsTo

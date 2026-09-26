@@ -128,8 +128,6 @@ class Input extends BaseElement
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated options.
-     *
      * @return HasMany
      */
     final public function options(): HasMany
@@ -144,8 +142,6 @@ class Input extends BaseElement
     }
 
     /**
-     * Get the associated validation rules.
-     *
      * @return BelongsToMany
      */
     final public function validation_rules(): BelongsToMany
@@ -169,8 +165,6 @@ class Input extends BaseElement
     #region • ACCESSORS
 
     /**
-     * Get the "icon" attribute.
-     *
      * @return string
      */
     protected function icon(): Attribute

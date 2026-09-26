@@ -85,8 +85,6 @@ class InputValidationRule extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated input.
-     *
      * @return BelongsTo
      */
     final public function input(): BelongsTo
@@ -100,8 +98,6 @@ class InputValidationRule extends Pivot
     }
 
     /**
-     * Get the associated validation rule.
-     *
      * @return BelongsTo
      */
     final public function validation_rule(): BelongsTo

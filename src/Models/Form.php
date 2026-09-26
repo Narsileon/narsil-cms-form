@@ -145,8 +145,6 @@ class Form extends Model implements Searchable
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated steps.
-     *
      * @return HasMany
      */
     final public function steps(): HasMany
@@ -161,8 +159,6 @@ class Form extends Model implements Searchable
     }
 
     /**
-     * Get the associated submissions.
-     *
      * @return HasMany
      */
     final public function submissions(): HasMany
@@ -176,8 +172,6 @@ class Form extends Model implements Searchable
     }
 
     /**
-     * Get the associated webhooks.
-     *
      * @return HasMany
      */
     final public function webhooks(): HasMany

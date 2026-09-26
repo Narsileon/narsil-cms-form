@@ -95,8 +95,6 @@ abstract class BaseElement extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated fieldset elements.
-     *
      * @return MorphMany
      */
     final public function fieldset_elements(): MorphMany
@@ -111,8 +109,6 @@ abstract class BaseElement extends Model
     }
 
     /**
-     * Get the associated form step elements.
-     *
      * @return MorphMany
      */
     final public function form_step_elements(): MorphMany
@@ -135,8 +131,6 @@ abstract class BaseElement extends Model
     #region • ACCESSORS
 
     /**
-     * Get the "icon" attribute.
-     *
      * @return string
      */
     abstract protected function icon(): Attribute;

@@ -124,8 +124,6 @@ class FormStepElement extends Element
     }
 
     /**
-     * Get the associated fieldset.
-     *
      * @return BelongsTo
      */
     final public function fieldset(): BelongsTo
@@ -139,8 +137,6 @@ class FormStepElement extends Element
     }
 
     /**
-     * Get the associated input.
-     *
      * @return BelongsTo
      */
     final public function input(): BelongsTo

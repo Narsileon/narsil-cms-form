@@ -6,7 +6,6 @@ namespace Narsil\Cms\Form;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Data\Forms\Inputs\CheckboxInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\DateInputData;
@@ -24,6 +23,7 @@ use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TimeInputData;
 use Narsil\Base\Implementations\Menu;
 use Narsil\Base\Narsil;
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\PermissionService;
 use Narsil\Base\Support\MenuItem;
@@ -119,8 +119,8 @@ class ServiceProvider extends NarsilServiceProvider
 
             $menu
                 ->add(
-                    new MenuItem(Str::afterLast(Form::TABLE, '.'))
-                        ->before(Str::afterLast(Template::TABLE, '.'))
+                    new MenuItem(DatabaseService::getUnqualifiedTableName(Form::TABLE))
+                        ->before(DatabaseService::getUnqualifiedTableName(Template::TABLE))
                         ->group($group)
                         ->icon('fa-solid-clipboard-list')
                         ->label(ModelService::getTableLabel(Form::TABLE))
@@ -130,7 +130,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->route('forms.index')
                 )
                 ->add(
-                    new MenuItem(Str::afterLast(Fieldset::TABLE, '.'))
+                    new MenuItem(DatabaseService::getUnqualifiedTableName(Fieldset::TABLE))
                         ->group($group)
                         ->icon('fa-solid-list-squares')
                         ->label(ModelService::getTableLabel(Fieldset::TABLE))
@@ -140,7 +140,7 @@ class ServiceProvider extends NarsilServiceProvider
                         ->route('fieldsets.index')
                 )
                 ->add(
-                    new MenuItem(Str::afterLast(Input::TABLE, '.'))
+                    new MenuItem(DatabaseService::getUnqualifiedTableName(Input::TABLE))
                         ->group($group)
                         ->icon('fa-solid-square-pen')
                         ->label(ModelService::getTableLabel(Input::TABLE))

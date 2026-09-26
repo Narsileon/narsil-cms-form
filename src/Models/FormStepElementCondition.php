@@ -65,8 +65,6 @@ class FormStepElementCondition extends AbstractCondition
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated form step element.
-     *
      * @return BelongsTo
      */
     final public function form_step_element(): BelongsTo

@@ -85,8 +85,6 @@ class FormWebhook extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated form.
-     *
      * @return BelongsTo
      */
     final public function form(): BelongsTo

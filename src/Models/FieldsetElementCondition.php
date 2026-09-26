@@ -65,8 +65,6 @@ class FieldsetElementCondition extends AbstractCondition
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated fieldset element.
-     *
      * @return BelongsTo
      */
     final public function fieldset_element(): BelongsTo

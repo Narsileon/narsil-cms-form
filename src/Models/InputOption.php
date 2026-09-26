@@ -95,8 +95,6 @@ class InputOption extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated input.
-     *
      * @return BelongsTo
      */
     final public function input(): BelongsTo

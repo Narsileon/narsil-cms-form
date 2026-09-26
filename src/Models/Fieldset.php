@@ -121,8 +121,6 @@ class Fieldset extends BaseElement
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated elements.
-     *
      * @return HasMany
      */
     final public function elements(): HasMany
@@ -137,8 +135,6 @@ class Fieldset extends BaseElement
     }
 
     /**
-     * Get the associated fieldsets.
-     *
      * @return MorphToMany
      */
     final public function fieldsets(): MorphToMany
@@ -155,8 +151,6 @@ class Fieldset extends BaseElement
     }
 
     /**
-     * Get the associated inputs.
-     *
      * @return MorphToMany
      */
     final public function inputs(): MorphToMany
@@ -181,8 +175,6 @@ class Fieldset extends BaseElement
     #region • ACCESSORS
 
     /**
-     * Get the "icon" attribute.
-     *
      * @return string
      */
     protected function icon(): Attribute
