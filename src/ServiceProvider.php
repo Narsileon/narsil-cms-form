@@ -6,6 +6,7 @@ namespace Narsil\Cms\Form;
 
 #region USE
 
+use Illuminate\Support\Facades\Blade;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Data\Forms\Inputs\CheckboxInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\DateInputData;
@@ -58,6 +59,7 @@ use Narsil\Cms\Form\Models\Form;
 use Narsil\Cms\Form\Models\FormStep;
 use Narsil\Cms\Form\Models\FormStepElement;
 use Narsil\Cms\Form\Models\Input;
+use Narsil\Cms\Form\View\Components\Blocks\Input\InputForm as InputFormComponent;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Providers\NarsilServiceProvider;
 use Narsil\Cms\Support\Facades\CmsSidebar;
@@ -74,6 +76,8 @@ class ServiceProvider extends NarsilServiceProvider
     public function boot(): void
     {
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms-form');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'narsil-cms-form');
+        Blade::component(InputFormComponent::class, 'narsil-cms-form::blocks.input.input-form');
 
         $this->bootCmsRoutes(__DIR__ . '/../routes/cms.php');
         $this->bootWebRoutes(__DIR__ . '/../routes/web.php');
@@ -185,6 +189,7 @@ class ServiceProvider extends NarsilServiceProvider
             ->request(FormSubmissionFormRequest::class, Implementations\Requests\FormSubmissionFormRequest::class)
             ->request(InputFormRequest::class, Implementations\Requests\InputFormRequest::class)
             ->field(FormInputData::TYPE, FormInputData::class)
+            ->fieldComponent(FormInputData::TYPE, 'narsil-cms-form::blocks.input.input-form')
             ->input(CheckboxInputData::TYPE, CheckboxInputData::class)
             ->input(DateInputData::TYPE, DateInputData::class)
             ->input(DatetimeInputData::TYPE, DatetimeInputData::class)
