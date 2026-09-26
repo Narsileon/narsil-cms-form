@@ -8,8 +8,8 @@ namespace Narsil\Cms\Form\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Cms\Models\ValidationRule;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
+use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 

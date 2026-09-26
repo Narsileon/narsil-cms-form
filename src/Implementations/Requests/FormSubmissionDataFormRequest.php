@@ -140,7 +140,7 @@ class FormSubmissionDataFormRequest extends FormRequest implements Contract
             {
                 $input = $element->{Element::RELATION_BASE};
 
-                $fieldValidationRules =  $input->{Input::RELATION_VALIDATION_RULES}->pluck(ValidationRule::HANDLE)->toArray();
+                $fieldValidationRules = $input->{Input::RELATION_VALIDATION_RULES}->pluck(ValidationRule::HANDLE)->toArray();
 
                 $fieldRules = [];
 

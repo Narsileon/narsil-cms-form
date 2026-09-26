@@ -16,7 +16,7 @@ use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
     use HasSchemas;
 
@@ -43,7 +43,7 @@ return new class extends Migration
             {
                 $this->createInputValidationRuleTable($schema);
             }
-        };
+        }
     }
 
     /**
@@ -58,7 +58,7 @@ return new class extends Migration
             Schema::dropIfExists("$schema." . InputValidationRule::TABLE);
             Schema::dropIfExists("$schema." . InputOption::TABLE);
             Schema::dropIfExists("$schema." . Input::TABLE);
-        };
+        }
     }
 
     #endregion

@@ -51,21 +51,21 @@ final class FormDefinition extends AbstractModelDefinition
             ModelHookEventEnum::AFTER_STORE->value => [
                 [
                     'hook' => SyncFormWebhooksHook::class,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
                 [
                     'hook' => SyncFormStepsHook::class,
-                    'priority' => 10
+                    'priority' => 10,
                 ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
                 [
                     'hook' => SyncFormWebhooksHook::class,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
                 [
                     'hook' => SyncFormStepsHook::class,
-                    'priority' => 10
+                    'priority' => 10,
                 ],
             ],
         ];

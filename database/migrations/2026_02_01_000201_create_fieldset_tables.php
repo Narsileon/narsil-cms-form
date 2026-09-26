@@ -17,7 +17,7 @@ use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
     use HasSchemas;
 
@@ -44,7 +44,7 @@ return new class extends Migration
             {
                 $this->createFieldsetElementConditionsTable($schema);
             }
-        };
+        }
     }
 
     /**
@@ -59,7 +59,7 @@ return new class extends Migration
             Schema::dropIfExists("$schema." . FieldsetElementCondition::TABLE);
             Schema::dropIfExists("$schema." . FieldsetElement::TABLE);
             Schema::dropIfExists("$schema." . Fieldset::TABLE);
-        };
+        }
     }
 
     #endregion

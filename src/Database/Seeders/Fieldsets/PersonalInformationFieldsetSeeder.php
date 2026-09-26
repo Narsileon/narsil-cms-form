@@ -72,7 +72,7 @@ final class PersonalInformationFieldsetSeeder extends Seeder
                 $NameInputSeeder,
                 [
                     FieldsetElement::HANDLE => self::LAST_NAME,
-                    FieldsetElement::LABEL  => 'Last name',
+                    FieldsetElement::LABEL => 'Last name',
                     FieldsetElement::POSITION => 1,
                     FieldsetElement::REQUIRED => true,
                     FieldsetElement::WIDTH => 50,
@@ -83,7 +83,7 @@ final class PersonalInformationFieldsetSeeder extends Seeder
                 $EmailInputSeeder,
                 [
                     FieldsetElement::HANDLE => self::EMAIL,
-                    FieldsetElement::LABEL  => 'Email',
+                    FieldsetElement::LABEL => 'Email',
                     FieldsetElement::POSITION => 2,
                     FieldsetElement::REQUIRED => true,
                 ],

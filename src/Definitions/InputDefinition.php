@@ -6,17 +6,17 @@ namespace Narsil\Cms\Form\Definitions;
 
 #region USE
 
+use Illuminate\Support\Arr;
 use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Base\Http\Data\ModelHookContext;
-use Illuminate\Support\Arr;
 use Narsil\Cms\Contracts\Actions\Fields\SyncFieldValidationRules;
-use Narsil\Cms\Form\Contracts\Actions\Inputs\SyncInputOptions;
 use Narsil\Cms\Form\Contracts\Actions\Inputs\ReplicateInput;
+use Narsil\Cms\Form\Contracts\Actions\Inputs\SyncInputOptions;
 use Narsil\Cms\Form\Contracts\Forms\InputForm;
 use Narsil\Cms\Form\Contracts\Requests\InputFormRequest;
-use Narsil\Cms\Form\Models\Input;
 use Narsil\Cms\Form\Implementations\Tables\InputTable;
+use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
@@ -58,13 +58,13 @@ final class InputDefinition extends AbstractModelDefinition
             ModelHookEventEnum::AFTER_STORE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
         ];
@@ -77,7 +77,7 @@ final class InputDefinition extends AbstractModelDefinition
     {
         return [
             Input::RELATION_OPTIONS,
-            Input::RELATION_VALIDATION_RULES
+            Input::RELATION_VALIDATION_RULES,
         ];
     }
 
@@ -87,7 +87,7 @@ final class InputDefinition extends AbstractModelDefinition
     public function indexWithCount(): array
     {
         return [
-            Input::RELATION_VALIDATION_RULES
+            Input::RELATION_VALIDATION_RULES,
         ];
     }
 

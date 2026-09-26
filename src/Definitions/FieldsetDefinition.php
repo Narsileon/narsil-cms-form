@@ -31,7 +31,7 @@ final class FieldsetDefinition extends AbstractModelDefinition
         return [
             Fieldset::RELATION_ELEMENTS,
             Fieldset::RELATION_FIELDSETS,
-            Fieldset::RELATION_INPUTS
+            Fieldset::RELATION_INPUTS,
         ];
     }
 
@@ -60,13 +60,13 @@ final class FieldsetDefinition extends AbstractModelDefinition
             ModelHookEventEnum::AFTER_STORE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
         ];

@@ -31,7 +31,7 @@ class SyncFieldsetElements extends Action implements Contract
         {
             $identifier = Arr::get($element, FieldsetElement::ATTRIBUTE_IDENTIFIER);
 
-            if (!$identifier || ! Str::contains($identifier, '-'))
+            if (!$identifier || !Str::contains($identifier, '-'))
             {
                 continue;
             }

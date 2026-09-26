@@ -45,7 +45,7 @@ class FormForm extends BaseForm implements Contract
 
     #region PROTECTED METHODS
 
-        /**
+    /**
      * Get the fieldset options.
      *
      * @return OptionData[]

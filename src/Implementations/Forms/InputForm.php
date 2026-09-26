@@ -44,7 +44,7 @@ class InputForm extends Form implements Contract
 
     #region PROTECTED METHODS
 
-        /**
+    /**
      * Get the type options.
      *
      * @return array<OptionData>

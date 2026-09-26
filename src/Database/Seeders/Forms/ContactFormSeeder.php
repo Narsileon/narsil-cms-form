@@ -75,7 +75,7 @@ final class ContactFormSeeder extends Seeder
                     $PersonalInformationFieldsetSeeder,
                     [
                         FormStepElement::HANDLE => self::PERSONAL_INFORMATION,
-                        FormStepElement::LABEL  => 'Personal information',
+                        FormStepElement::LABEL => 'Personal information',
                         FormStepElement::POSITION => 1,
                     ],
                     FormStep::RELATION_FIELDSETS

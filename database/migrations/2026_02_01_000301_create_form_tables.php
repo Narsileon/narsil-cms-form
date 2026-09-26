@@ -23,7 +23,7 @@ use Narsil\Cms\Form\Models\Input;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
     use HasSchemas;
 
@@ -62,7 +62,7 @@ return new class extends Migration
             {
                 $this->createFormWebhooksTable($schema);
             }
-        };
+        }
     }
 
     /**
@@ -80,7 +80,7 @@ return new class extends Migration
             Schema::dropIfExists("$schema." . FormStepElement::TABLE);
             Schema::dropIfExists("$schema." . FormStep::TABLE);
             Schema::dropIfExists("$schema." . Form::TABLE);
-        };
+        }
     }
 
     #endregion

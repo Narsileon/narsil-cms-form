@@ -1,0 +1,55 @@
+# Structure
+
+CMS Form extends CMS with form-builder and frontend forms.
+
+```text
+.  # Narsil CMS Form root
+├── database/  # Database files
+│   └── migrations/  # Database migrations
+├── docs/  # Documentation
+├── lang/  # Translations
+│   ├── de/  # German translations
+│   ├── en/  # English translations
+│   └── fr/  # French translations
+├── resources/  # Resources
+│   └── js/  # Frontend code
+│       └── plugin/  # Frontend plugin
+├── routes/  # HTTP routes
+└── src/  # PHP source
+    ├── Contracts/  # Contract definitions
+    │   ├── Actions/  # Action contract definitions
+    │   │   ├── Elements/  # Element contract definitions
+    │   │   ├── Fieldsets/  # Fieldset contract definitions
+    │   │   ├── Forms/  # Form contract definitions
+    │   │   └── Inputs/  # Input contract definitions
+    │   ├── Forms/  # Form contract definitions
+    │   └── Requests/  # Request contract definitions
+    ├── Database/  # Database files
+    │   ├── Factories/  # Eloquent model factories
+    │   └── Seeders/  # Database seeders
+    │       ├── Blocks/  # Block seeders
+    │       ├── Fields/  # Field seeders
+    │       ├── Fieldsets/  # Fieldset seeders
+    │       ├── Forms/  # Form seeders
+    │       └── Inputs/  # Input seeders
+    ├── Definitions/  # Form definitions
+    ├── Http/  # HTTP request handling
+    │   ├── Controllers/  # HTTP controllers
+    │   └── Data/  # HTTP data objects
+    │       └── Forms/  # Form data objects
+    │           └── Inputs/  # Input data objects
+    ├── Implementations/  # Contract implementations
+    │   ├── Actions/  # Action contract implementations
+    │   │   ├── Elements/  # Element contract implementations
+    │   │   ├── Fieldsets/  # Fieldset contract implementations
+    │   │   ├── Forms/  # Form contract implementations
+    │   │   └── Inputs/  # Input contract implementations
+    │   ├── Forms/  # Form contract implementations
+    │   ├── Hooks/  # Lifecycle hooks
+    │   │   └── Forms/  # Form hooks
+    │   ├── Requests/  # Request contract implementations
+    │   └── Tables/  # Table contract implementations
+    ├── Models/  # Eloquent models
+    ├── Observers/  # Eloquent model observers
+    └── Policies/  # Eloquent model policies
+```
