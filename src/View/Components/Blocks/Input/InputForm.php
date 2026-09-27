@@ -16,6 +16,16 @@ final class InputForm extends Component
 {
     #region CONSTRUCTOR
 
+    /**
+     * @param mixed $element
+     * @param mixed $id
+     * @param mixed $input
+     * @param mixed $languages
+     * @param mixed $name
+     * @param mixed $value
+     *
+     * @return void
+     */
     public function __construct(
         mixed $element,
         mixed $id,
@@ -70,6 +80,9 @@ final class InputForm extends Component
 
     #region PUBLIC METHODS
 
+    /**
+     * @return View
+     */
     public function render(): View
     {
         return view('narsil-cms-form::components.blocks.input.input-form');
@@ -79,6 +92,11 @@ final class InputForm extends Component
 
     #region PRIVATE METHODS
 
+    /**
+     * @param string $value
+     *
+     * @return array<int,array{label:string,value:string}>
+     */
     private function resolveOptions(string $value): array
     {
         $prefix = Form::TABLE . '-';
