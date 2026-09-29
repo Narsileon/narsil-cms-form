@@ -51,12 +51,12 @@ class FormFormRequest extends FormRequest implements Contract
             ],
 
             Form::RELATION_STEPS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],
             Form::RELATION_WEBHOOKS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
         ];

@@ -50,19 +50,19 @@ class InputFormRequest extends FormRequest implements Contract
                 )->ignore($this->input?->{Input::ID}),
             ],
             Input::LABEL => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::REQUIRED,
             ],
             Input::DESCRIPTION => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Input::PLACEHOLDER => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Input::SETTINGS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],
@@ -72,12 +72,12 @@ class InputFormRequest extends FormRequest implements Contract
             ],
 
             Input::RELATION_OPTIONS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],
             Input::RELATION_VALIDATION_RULES => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],

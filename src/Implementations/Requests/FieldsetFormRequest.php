@@ -55,7 +55,7 @@ class FieldsetFormRequest extends FormRequest implements Contract
             ],
 
             Fieldset::RELATION_ELEMENTS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],
