@@ -7,4 +7,5 @@
 	:placeholder="$placeholder"
 	:required="$required"
 	:value="$value"
+	{{ $attributes->twMerge() }}
 />
