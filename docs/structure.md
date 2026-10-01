@@ -18,8 +18,10 @@ CMS Form extends CMS with form-builder and frontend forms.
 │   ├── en/  # English translations
 │   └── fr/  # French translations
 ├── resources/  # Resources
-│   └── js/  # Frontend code
-│       └── plugin/  # Frontend plugin
+│   └── views/  # Blade components
+│       └── components/  # Component groups
+│           └── blocks/  # Form builder blocks
+│               └── input/  # Input components
 ├── routes/  # HTTP routes
 └── src/  # PHP source
     ├── Contracts/  # Contract definitions
@@ -57,5 +59,9 @@ CMS Form extends CMS with form-builder and frontend forms.
     │   └── Tables/  # Table contract implementations
     ├── Models/  # Eloquent models
     ├── Observers/  # Eloquent model observers
-    └── Policies/  # Eloquent model policies
+    ├── Policies/  # Eloquent model policies
+    └── View/  # Blade view components
+        └── Components/  # Form component groups
+            └── Blocks/  # Form blocks
+                └── Input/  # Input components
 ```
