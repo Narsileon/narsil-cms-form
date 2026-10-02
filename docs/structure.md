@@ -43,9 +43,11 @@ CMS Form extends CMS with form-builder and frontend forms.
     ├── Definitions/  # Form definitions
     ├── Http/  # HTTP request handling
     │   ├── Controllers/  # HTTP controllers
-    │   └── Data/  # HTTP data objects
-    │       └── Forms/  # Form data objects
-    │           └── Inputs/  # Input data objects
+    │   ├── Data/  # HTTP data objects
+    │   │   └── Forms/  # Form data objects
+    │   │       └── Inputs/  # Input data objects
+    │   └── Resources/  # Extensible HTTP response resources
+    │       └── Frontend/  # Frontend form resources
     ├── Implementations/  # Contract implementations
     │   ├── Actions/  # Action contract implementations
     │   │   ├── Elements/  # Element contract implementations
